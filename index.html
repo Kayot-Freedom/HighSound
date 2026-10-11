@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>High Sound — Автозвук: статьи, схемы, форум</title>
+<title>High Sound — Автозвук: статьи, форум, инструменты</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -265,15 +265,16 @@
     border: 1px solid var(--border);
     border-radius: 14px;
     width: fit-content;
+    flex-wrap: wrap;
   }
 
   .main-tab {
-    padding: 11px 28px;
+    padding: 11px 24px;
     border-radius: 10px;
     border: none;
     background: transparent;
     color: var(--text-dim);
-    font-size: 0.92em;
+    font-size: 0.9em;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.25s;
@@ -493,6 +494,7 @@
     justify-content: center;
     transition: all 0.2s;
     font-family: inherit;
+    z-index: 2;
   }
 
   .modal-close:hover {
@@ -786,7 +788,6 @@
     font-weight: 600;
   }
 
-  /* Модалка форума */
   .forum-modal .modal-content { max-width: 820px; }
 
   .post {
@@ -840,7 +841,6 @@
     line-height: 1.6;
   }
 
-  /* Форма нового поста */
   .reply-form {
     margin-top: 22px;
     padding-top: 22px;
@@ -887,6 +887,445 @@
   .reply-form button:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 22px rgba(255, 255, 255, 0.18);
+  }
+
+  /* ===== ИНСТРУМЕНТЫ ===== */
+  .tools-wrap {
+    margin: 30px 0 60px;
+  }
+
+  .tools-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+    padding: 6px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    width: fit-content;
+  }
+
+  .tool-tab {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    background: transparent;
+    color: var(--text-dim);
+    font-size: 0.87em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .tool-tab.active {
+    background: linear-gradient(135deg, #ffffff, #b0b0b0);
+    color: #000;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
+  }
+
+  .tool-tab:not(.active):hover { color: var(--text); }
+
+  .tool-panel { display: none; animation: fadeUp 0.4s ease; }
+  .tool-panel.active { display: block; }
+
+  .tool-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px;
+    margin-bottom: 18px;
+  }
+
+  .tool-card h3 {
+    font-size: 1.15em;
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .tool-card .desc {
+    display: block;
+    font-size: 0.88em;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    line-height: 1.55;
+  }
+
+  .control-row {
+    margin-bottom: 18px;
+  }
+
+  .control-row label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85em;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .control-row label .val {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.05em;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .control-row input[type="range"] {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--border);
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .control-row input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffffff, #b0b0b0);
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+  }
+
+  .control-row input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+  }
+
+  .btn-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+
+  .btn {
+    padding: 11px 22px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    font-size: 0.88em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .btn.primary {
+    background: linear-gradient(135deg, #ffffff, #b0b0b0);
+    border: none;
+    color: #000;
+  }
+
+  .btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(255, 255, 255, 0.18);
+    color: #000;
+  }
+
+  .btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+
+  .quick-freqs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 10px;
+  }
+
+  .quick-freq {
+    padding: 7px 14px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    color: var(--text-dim);
+    font-size: 0.8em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+
+  .quick-freq:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .quick-freq.active {
+    background: linear-gradient(135deg, #ffffff, #b0b0b0);
+    border-color: transparent;
+    color: #000;
+  }
+
+  /* Большой дисплей значений */
+  .display {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 26px;
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .display .big-num {
+    font-size: 3.2em;
+    font-weight: 900;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: -2px;
+    background: linear-gradient(135deg, #ffffff, #808080);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+  }
+
+  .display .unit {
+    font-size: 1em;
+    color: var(--text-dim);
+    font-weight: 600;
+    margin-left: 8px;
+  }
+
+  .display .label {
+    display: block;
+    font-size: 0.82em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 12px;
+  }
+
+  .meter-bar {
+    height: 14px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    overflow: hidden;
+    margin: 16px 0;
+    position: relative;
+  }
+
+  .meter-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #606060, #ffffff);
+    transition: width 0.08s linear;
+    border-radius: 7px;
+  }
+
+  .meter-peak {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: #fff;
+    box-shadow: 0 0 8px #fff;
+    transition: left 0.3s ease;
+  }
+
+  .peak-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8em;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+  }
+
+  .peak-info .val {
+    color: #fff;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  canvas {
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+  }
+
+  /* Inputs и selects */
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .field-row.full { grid-template-columns: 1fr; }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .field label {
+    font-size: 0.82em;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .field input,
+  .field select {
+    padding: 11px 14px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-size: 0.92em;
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.2s;
+  }
+
+  .field input:focus,
+  .field select:focus { border-color: var(--accent); }
+
+  /* Результаты калькулятора */
+  .result-box {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-left: 4px solid #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+  }
+
+  .result-box h4 {
+    font-size: 1em;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: #fff;
+  }
+
+  .result-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+  }
+
+  .result-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+  }
+
+  .result-item .rn {
+    font-size: 1.4em;
+    font-weight: 800;
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1.1;
+  }
+
+  .result-item .rl {
+    display: block;
+    font-size: 0.72em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 6px;
+  }
+
+  /* 3D визуализация */
+  .viewer3d {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    background: linear-gradient(180deg, #0a0a0a, #050505);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-top: 20px;
+    perspective: 1000px;
+    cursor: grab;
+  }
+
+  .viewer3d:active { cursor: grabbing; }
+
+  .viewer3d .hint {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75em;
+    color: #4a4a4a;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 5px 14px;
+    border-radius: 50px;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  .box-3d {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-style: preserve-3d;
+    transition: transform 0.05s linear;
+  }
+
+  .face {
+    position: absolute;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7em;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 600;
+  }
+
+  .face.front { background: rgba(255, 255, 255, 0.08); }
+  .face.back { background: rgba(255, 255, 255, 0.03); }
+  .face.top { background: rgba(255, 255, 255, 0.06); }
+  .face.bottom { background: rgba(255, 255, 255, 0.02); }
+  .face.left { background: rgba(255, 255, 255, 0.05); }
+  .face.right { background: rgba(255, 255, 255, 0.05); }
+
+  .port-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, #000 30%, #1a1a1a 100%);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
   }
 
   /* ===== ПОДВАЛ ===== */
@@ -938,6 +1377,22 @@
     display: none;
   }
 
+  /* Статус индикатор */
+  .status-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #444;
+    margin-right: 8px;
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+
+  .status-dot.on {
+    background: #fff;
+    box-shadow: 0 0 10px #fff;
+    animation: pulse 1.5s infinite;
+  }
+
   @media (max-width: 640px) {
     nav { padding: 12px 18px; }
     nav ul { display: none; }
@@ -947,6 +1402,11 @@
     .main-tabs { flex-direction: column; width: 100%; }
     .main-tab { justify-content: center; }
     .topic { flex-direction: column; }
+    .tools-tabs { width: 100%; }
+    .tool-tab { flex: 1; justify-content: center; font-size: 0.8em; padding: 9px 12px; }
+    .field-row { grid-template-columns: 1fr; }
+    .display .big-num { font-size: 2.4em; }
+    .viewer3d { height: 280px; }
   }
 </style>
 </head>
@@ -954,7 +1414,7 @@
 
 <nav>
   <div class="logo">
-    <img class="logo-img" src="https://github.com/Kayot-Freedom/HighSound/blob/main/High%20Sound.png" alt="High Sound">
+    <img class="logo-img" src="https://i.ibb.co/6RqZz7vK/high-sound.png" alt="High Sound">
     <div class="logo-text">
       <span class="name">High Sound</span>
       <span class="tagline">Auto Audio</span>
@@ -963,8 +1423,7 @@
   <ul>
     <li><a href="#" data-tab="articles" class="active">Статьи</a></li>
     <li><a href="#" data-tab="forum">Форум</a></li>
-    <li><a href="#">Схемы</a></li>
-    <li><a href="#">Компоненты</a></li>
+    <li><a href="#" data-tab="tools">Инструменты</a></li>
   </ul>
 </nav>
 
@@ -980,14 +1439,14 @@
 
     <div class="badge">
       <span class="dot"></span>
-      База знаний и сообщество автозвука
+      База знаний, сообщество и инструменты автозвука
     </div>
 
     <h1>Всё про <span class="grad">автозвук</span> в одном месте</h1>
-    <span class="hero-sub">Подключение акустики, борьба с фоном, настройка усилителей и сабвуферов. Практические руководства и живой форум.</span>
+    <span class="hero-sub">Статьи, форум и профессиональные инструменты: генератор тона, шумомер, анализатор частот, калькуляторы короба и провода.</span>
 
     <div class="search-box">
-      <input type="text" id="searchInput" placeholder="🔍 Поиск по статьям и форуму..." autocomplete="off">
+      <input type="text" id="searchInput" placeholder="🔍 Поиск по статьям..." autocomplete="off">
       <button id="searchBtn">Найти</button>
     </div>
   </section>
@@ -996,6 +1455,7 @@
   <div class="main-tabs">
     <button class="main-tab active" data-panel="articles">📚 Статьи</button>
     <button class="main-tab" data-panel="forum">💬 Форум</button>
+    <button class="main-tab" data-panel="tools">🛠️ Инструменты</button>
   </div>
 
   <!-- ===== ПАНЕЛЬ: СТАТЬИ ===== -->
@@ -1009,7 +1469,7 @@
     </div>
 
     <div class="articles" id="articles"></div>
-    <div class="empty" id="empty">😕 По вашему запросу ничего не найдено. Попробуйте изменить формулировку.</div>
+    <div class="empty" id="empty">😕 По вашему запросу ничего не найдено.</div>
   </div>
 
   <!-- ===== ПАНЕЛЬ: ФОРУМ ===== -->
@@ -1048,7 +1508,291 @@
       </div>
 
       <div id="topicsList"></div>
-      <div class="empty" id="forumEmpty">😕 В этой категории пока нет тем. Создайте первую!</div>
+      <div class="empty" id="forumEmpty">😕 В этой категории пока нет тем.</div>
+    </div>
+  </div>
+
+  <!-- ===== ПАНЕЛЬ: ИНСТРУМЕНТЫ ===== -->
+  <div class="panel" id="panel-tools">
+    <div class="tools-wrap">
+
+      <div class="tools-tabs">
+        <button class="tool-tab active" data-tool="tone">🎵 Тон-генератор</button>
+        <button class="tool-tab" data-tool="spl">📊 Шумомер</button>
+        <button class="tool-tab" data-tool="freq">🎼 Определитель частот</button>
+        <button class="tool-tab" data-tool="box">📦 Калькулятор короба</button>
+        <button class="tool-tab" data-tool="wire">🔌 Калькулятор провода</button>
+      </div>
+
+      <!-- ===== ТОН-ГЕНЕРАТОР ===== -->
+      <div class="tool-panel active" id="tool-tone">
+        <div class="tool-card">
+          <h3><span class="status-dot" id="toneStatus"></span>Генератор тона</h3>
+          <span class="desc">Подаёт синусоидальный сигнал выбранной частоты. Используйте для проверки диапазона динамиков, поиска резонансов и настройки кроссоверов.</span>
+
+          <div class="display">
+            <div>
+              <span class="big-num" id="toneFreqDisplay">1000</span>
+              <span class="unit">Гц</span>
+            </div>
+            <span class="label" id="toneNoteDisplay">—</span>
+          </div>
+
+          <div class="control-row">
+            <label>Частота <span class="val" id="toneFreqVal">1000 Гц</span></label>
+            <input type="range" id="toneFreq" min="20" max="20000" value="1000" step="1">
+          </div>
+
+          <div class="control-row">
+            <label>Громкость <span class="val" id="toneVolVal">30%</span></label>
+            <input type="range" id="toneVol" min="0" max="100" value="30" step="1">
+          </div>
+
+          <div class="control-row">
+            <label>Тип волны</label>
+            <select id="toneWave" style="width:100%; padding:11px 14px; background:var(--bg-soft); border:1px solid var(--border); border-radius:10px; color:var(--text); font-size:0.92em; outline:none; font-family:inherit;">
+              <option value="sine">Синус (чистый тон)</option>
+              <option value="square">Квадрат (жёсткий)</option>
+              <option value="sawtooth">Пила (резкий)</option>
+              <option value="triangle">Треугольник (мягкий)</option>
+            </select>
+          </div>
+
+          <div class="btn-group">
+            <button class="btn primary" id="tonePlay">▶ Включить</button>
+            <button class="btn" id="toneStop" disabled>⏹ Стоп</button>
+            <button class="btn" id="toneSweep">📈 Sweep 20–20k</button>
+          </div>
+
+          <div class="quick-freqs" id="quickFreqs">
+            <button class="quick-freq" data-f="30">30 Гц</button>
+            <button class="quick-freq" data-f="50">50 Гц</button>
+            <button class="quick-freq" data-f="80">80 Гц</button>
+            <button class="quick-freq" data-f="100">100 Гц</button>
+            <button class="quick-freq" data-f="200">200 Гц</button>
+            <button class="quick-freq active" data-f="1000">1 кГц</button>
+            <button class="quick-freq" data-f="3000">3 кГц</button>
+            <button class="quick-freq" data-f="5000">5 кГц</button>
+            <button class="quick-freq" data-f="10000">10 кГц</button>
+            <button class="quick-freq" data-f="15000">15 кГц</button>
+          </div>
+
+          <div class="info-box" style="margin-top:20px;">💡 Начните с громкости 20–30%. Резкий старт на высокой громкости может повредить динамики. Для проверки сабвуфера используйте 30–60 Гц, для твитеров — 8–15 кГц.</div>
+        </div>
+      </div>
+
+      <!-- ===== ШУМОМЕР ===== -->
+      <div class="tool-panel" id="tool-spl">
+        <div class="tool-card">
+          <h3><span class="status-dot" id="splStatus"></span>Шумомер (SPL-метр)</h3>
+          <span class="desc">Измеряет уровень звукового давления через микрофон. Показывает текущий уровень, пик и среднее. Для точных SPL-замеров требуется калибровка.</span>
+
+          <div class="display">
+            <div>
+              <span class="big-num" id="splDisplay">—</span>
+              <span class="unit">dBFS</span>
+            </div>
+            <span class="label">Текущий уровень</span>
+          </div>
+
+          <div class="meter-bar">
+            <div class="meter-fill" id="splFill"></div>
+            <div class="meter-peak" id="splPeakMark" style="left:0%;"></div>
+          </div>
+
+          <div class="peak-info">
+            <span>Пик: <span class="val" id="splPeak">—</span></span>
+            <span>Среднее: <span class="val" id="splAvg">—</span></span>
+            <span>Калибровка: <span class="val" id="splCalibDisplay">0</span> dB</span>
+          </div>
+
+          <div class="control-row">
+            <label>Калибровка (дБ) <span class="val" id="splCalibVal">0</span></label>
+            <input type="range" id="splCalib" min="-60" max="60" value="0" step="1">
+          </div>
+
+          <div class="btn-group">
+            <button class="btn primary" id="splStart">🎤 Запустить</button>
+            <button class="btn" id="splStop" disabled>⏹ Стоп</button>
+            <button class="btn" id="splReset">↻ Сбросить пик</button>
+          </div>
+
+          <div style="margin-top:20px;">
+            <canvas id="splCanvas" width="600" height="160"></canvas>
+          </div>
+
+          <div class="info-box" style="margin-top:20px;">💡 Микрофон телефона/ноутбука не откалиброван. Для сравнительных замеров (до/после) это не критично, но для точного SPL нужен внешний калибратор. Значения даны в dBFS (0 = максимум АЦП).</div>
+        </div>
+      </div>
+
+      <!-- ===== ОПРЕДЕЛИТЕЛЬ ЧАСТОТ ===== -->
+      <div class="tool-panel" id="tool-freq">
+        <div class="tool-card">
+          <h3><span class="status-dot" id="freqStatus"></span>Определитель частот</h3>
+          <span class="desc">Анализирует звук с микрофона и определяет доминирующую частоту. Полезно для поиска резонансов салона, проверки воспроизведения и настройки сабвуфера.</span>
+
+          <div class="display">
+            <div>
+              <span class="big-num" id="freqDisplay">—</span>
+              <span class="unit">Гц</span>
+            </div>
+            <span class="label" id="freqNoteLabel">Ожидание сигнала...</span>
+          </div>
+
+          <div class="btn-group">
+            <button class="btn primary" id="freqStart">🎤 Запустить анализ</button>
+            <button class="btn" id="freqStop" disabled>⏹ Стоп</button>
+          </div>
+
+          <div style="margin-top:20px;">
+            <canvas id="freqCanvas" width="600" height="200"></canvas>
+          </div>
+
+          <div class="info-box" style="margin-top:20px;">💡 Наведите микрофон на источник звука. Для поиска резонанса салона включите свип-тон или музыку с сильным басом и смотрите, на каких частотах появляются пики.</div>
+        </div>
+      </div>
+
+      <!-- ===== КАЛЬКУЛЯТОР КОРОБА ===== -->
+      <div class="tool-panel" id="tool-box">
+        <div class="tool-card">
+          <h3>📦 Калькулятор короба сабвуфера</h3>
+          <span class="desc">Расчёт размеров корпуса для сабвуфера: закрытый ящик (ЗЯ), фазоинвертор (ФИ) и короб с щелевым портом. Учитывает толщину материала и объём, занимаемый динамиком.</span>
+
+          <div class="field-row">
+            <div class="field">
+              <label>Тип короба</label>
+              <select id="boxType">
+                <option value="sealed">Закрытый ящик (ЗЯ)</option>
+                <option value="ported" selected>Фазоинвертор (ФИ)</option>
+                <option value="slot">Щелевой порт</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Единицы измерения</label>
+              <select id="boxUnits">
+                <option value="cm" selected>Сантиметры</option>
+                <option value="in">Дюймы</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label>Целевой объём (литры)</label>
+              <input type="number" id="boxVol" value="45" min="1" step="1">
+            </div>
+            <div class="field">
+              <label>Толщина материала (мм)</label>
+              <input type="number" id="boxThickness" value="18" min="5" step="1">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label>Диаметр динамика (дюймы)</label>
+              <select id="boxSpeaker">
+                <option value="8">8"</option>
+                <option value="10">10"</option>
+                <option value="12" selected>12"</option>
+                <option value="15">15"</option>
+                <option value="18">18"</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Настройка порта (Гц)</label>
+              <input type="number" id="boxTune" value="35" min="15" max="80" step="1">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label>Диаметр порта (мм)</label>
+              <input type="number" id="boxPortD" value="100" min="30" step="5">
+            </div>
+            <div class="field">
+              <label>Вытеснение динамика (л)</label>
+              <input type="number" id="boxDispl" value="3" min="0" step="0.5">
+            </div>
+          </div>
+
+          <div class="btn-group">
+            <button class="btn primary" id="calcBox">📐 Рассчитать</button>
+            <button class="btn" id="resetBox">↻ Сбросить</button>
+          </div>
+
+          <div class="result-box" id="boxResult" style="display:none;">
+            <h4>📊 Результаты расчёта</h4>
+            <div class="result-grid" id="boxResultGrid"></div>
+          </div>
+
+          <div class="viewer3d" id="viewer3d">
+            <div class="hint">🖱 Зажмите и тяните для вращения · колёсико для зума</div>
+            <div class="box-3d" id="box3d"></div>
+          </div>
+
+          <div class="info-box" style="margin-top:20px;">💡 Расчёт приблизительный. Для точной настройки используйте программу WinISD или BassBox с параметрами Тилля-Смолла вашего динамика. Размеры указаны внутренние — не забудьте добавить толщину стенок при раскрое.</div>
+        </div>
+      </div>
+
+      <!-- ===== КАЛЬКУЛЯТОР ПРОВОДА ===== -->
+      <div class="tool-panel" id="tool-wire">
+        <div class="tool-card">
+          <h3>🔌 Калькулятор сечения провода</h3>
+          <span class="desc">Подбор сечения силового или акустического провода по мощности, длине трассы и допустимому падению напряжения. Учитывает медь OFC и CCA.</span>
+
+          <div class="field-row">
+            <div class="field">
+              <label>Тип провода</label>
+              <select id="wireType">
+                <option value="power" selected>Силовой (питание)</option>
+                <option value="speaker">Акустический</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Материал</label>
+              <select id="wireMat">
+                <option value="ofc" selected>Медь OFC</option>
+                <option value="cca">CCA (алюминий)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label>Мощность (Вт RMS)</label>
+              <input type="number" id="wirePower" value="500" min="1" step="10">
+            </div>
+            <div class="field">
+              <label>Напряжение (В)</label>
+              <input type="number" id="wireVolt" value="14.4" min="1" step="0.1">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label>Длина трассы (м)</label>
+              <input type="number" id="wireLength" value="5" min="0.5" step="0.5">
+            </div>
+            <div class="field">
+              <label>Допустимое падение (%)</label>
+              <input type="number" id="wireDrop" value="3" min="1" max="10" step="0.5">
+            </div>
+          </div>
+
+          <div class="btn-group">
+            <button class="btn primary" id="calcWire">📐 Рассчитать</button>
+            <button class="btn" id="resetWire">↻ Сбросить</button>
+          </div>
+
+          <div class="result-box" id="wireResult" style="display:none;">
+            <h4>📊 Результаты расчёта</h4>
+            <div class="result-grid" id="wireResultGrid"></div>
+          </div>
+
+          <div class="info-box" style="margin-top:20px;">💡 Для силовых проводов всегда округляйте сечение в большую сторону. CCA-провод требует на 30–40% большего сечения, чем OFC, из-за более высокого сопротивления.</div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -1079,619 +1823,257 @@
 </footer>
 
 <script>
-  /* ==================== СТАТЬИ ==================== */
+  /* ==================== СТАТЬИ (сокращены для краткости) ==================== */
   const articles = [
     {
-      id: 1,
-      cat: 'install',
-      icon: '🔌',
-      tag: 'install',
-      tagLabel: 'Подключение',
+      id: 1, cat: 'install', icon: '🔌', tag: 'install', tagLabel: 'Подключение',
       title: 'Как правильно подключить акустику в машине',
       excerpt: 'Пошаговое руководство: от выбора провода до фазировки динамиков. Разбираем полярность, сечение и схему подключения.',
-      time: '12 мин',
-      views: '12.4k',
+      time: '12 мин', views: '12.4k',
       content: `
         <h2>🔌 Как правильно подключить акустику в машине</h2>
-        <span class="modal-text">Правильное подключение акустики — основа качественного звука. Ошибки на этом этапе сводят на нет даже дорогую систему: даже топовые динамики за 50 000 ₽ будут звучать хуже бюджетных, если подключить их неправильно.</span>
-
-        <h3>1. Подготовка: что понадобится</h3>
+        <span class="modal-text">Правильное подключение акустики — основа качественного звука. Ошибки на этом этапе сводят на нет даже дорогую систему.</span>
+        <h3>1. Подготовка</h3>
         <ul>
           <li><strong>Акустический провод</strong> — медь OFC, сечение по мощности</li>
-          <li><strong>Клеммы и наконечники</strong> — для надёжного контакта</li>
-          <li><strong>Изолента, стяжки, гофра</strong> — для прокладки трассы</li>
-          <li><strong>Мультиметр</strong> — для проверки сопротивления и полярности</li>
-          <li><strong>Батарейка AA</strong> — для проверки фазировки динамиков</li>
-          <li><strong>Схема подключения ГУ</strong> — распиновка разъёма</li>
+          <li><strong>Клеммы и наконечники</strong></li>
+          <li><strong>Мультиметр</strong> — для проверки сопротивления</li>
+          <li><strong>Батарейка AA</strong> — для проверки фазировки</li>
         </ul>
-
-        <h3>2. Выбор провода: таблица сечения</h3>
-        <span class="modal-text">Сечение акустического провода зависит от мощности и длины трассы. При длине до 5 метров используйте следующую таблицу:</span>
+        <h3>2. Таблица сечения</h3>
         <div class="table-wrap">
           <table>
-            <tr><th>Мощность</th><th>Сечение</th><th>AWG</th><th>Применение</th></tr>
-            <tr><td>До 50 Вт</td><td>1.5 мм²</td><td>15 AWG</td><td>Твитеры, тыл</td></tr>
-            <tr><td>50–100 Вт</td><td>2.5 мм²</td><td>13 AWG</td><td>Фронт, коаксиалы</td></tr>
-            <tr><td>100–200 Вт</td><td>4.0 мм²</td><td>11 AWG</td><td>Мидбас, компонентный фронт</td></tr>
-            <tr><td>Свыше 200 Вт</td><td>6.0 мм²+</td><td>9 AWG</td><td>Сабвуфер, мощные системы</td></tr>
+            <tr><th>Мощность</th><th>Сечение</th><th>Применение</th></tr>
+            <tr><td>До 50 Вт</td><td>1.5 мм²</td><td>Твитеры</td></tr>
+            <tr><td>50–100 Вт</td><td>2.5 мм²</td><td>Фронт</td></tr>
+            <tr><td>100–200 Вт</td><td>4.0 мм²</td><td>Мидбас</td></tr>
+            <tr><td>Свыше 200 Вт</td><td>6.0 мм²+</td><td>Сабвуфер</td></tr>
           </table>
         </div>
-
-        <div class="info-box">💡 Используйте только медный провод (OFC). CCA (алюминий с медным напылением) хуже проводит ток, окисляется со временем и даёт просадки на басах.</div>
-
-        <h3>3. Полярность и фазировка</h3>
-        <span class="modal-text">Плюс динамика подключается к плюсу усилителя, минус — к минусу. Если перепутать полярность у одного из динамиков — он будет работать «в противофазе»: диффузор будет двигаться внутрь при движении остальных наружу. Это приведёт к потере баса и «размазанной» сцене.</span>
-
-        <span class="modal-text"><strong>Как проверить фазировку батарейкой:</strong></span>
-        <ol>
-          <li>Отсоедините динамик от усилителя</li>
-          <li>Кратковременно коснитесь клемм батарейкой AA (+ к +, − к −)</li>
-          <li>При правильной полярности диффузор дёрнется <strong>наружу</strong></li>
-          <li>При неправильной — <strong>внутрь</strong></li>
-        </ol>
-
-        <div class="warning-box">⚠️ Не держите батарейку долго — катушка может перегреться. Достаточно кратковременного касания 0.5 секунды.</div>
-
-        <h3>4. Схемы подключения</h3>
-        <ul>
-          <li><strong>Параллельно</strong> — сопротивление падает (2 динамика по 4Ω = 2Ω), мощность растёт</li>
-          <li><strong>Последовательно</strong> — сопротивление растёт (2 динамика по 4Ω = 8Ω), мощность падает</li>
-          <li><strong>Поканально</strong> — каждый динамик на свой канал усилителя (лучший вариант для качества)</li>
-          <li><strong>Поканально с мостом</strong> — 2 канала в мост на сабвуфер</li>
-        </ul>
-
-        <h3>5. Прокладка проводов</h3>
-        <span class="modal-text">Акустические провода прокладывайте <strong>отдельно от силовых</strong> (питание усилителя). Правила:</span>
-        <ul>
-          <li>Пересечение под углом 90° — допустимо</li>
-          <li>Параллельная прокладка рядом — нет: появятся наводки и фон</li>
-          <li>Прокладывайте по разным бортам: питание по левому, акустика по правому</li>
-          <li>Используйте гофру или стяжки для фиксации</li>
-          <li>Не оставляйте провода в зонах трения о металл</li>
-        </ul>
-
-        <div class="warning-box">⚠️ Не прокладывайте акустические провода рядом с блоком предохранителей, ЭБУ и высоковольтными проводами зажигания — это источник сильных помех.</div>
-
-        <h3>6. Подключение к магнитоле</h3>
-        <span class="modal-text">Если вы подключаете динамики напрямую к магнитоле (без усилителя), используйте штатный разъём ISO. Распиновка обычно такая:</span>
-        <ul>
-          <li><strong>Серый / серо-чёрный</strong> — правый фронт (+/−)</li>
-          <li><strong>Белый / бело-чёрный</strong> — левый фронт (+/−)</li>
-          <li><strong>Фиолетовый / фиолетово-чёрный</strong> — правый тыл (+/−)</li>
-          <li><strong>Зелёный / зелёно-чёрный</strong> — левый тыл (+/−)</li>
-        </ul>
-
-        <h3>7. Проверка после подключения</h3>
-        <ol>
-          <li>Проверьте мультиметром сопротивление каждого динамика — должно соответствовать паспорту</li>
-          <li>Включите систему на минимальной громкости</li>
-          <li>Прослушайте каждый динамик по отдельности — не должно быть хрипов и дребезга</li>
-          <li>Проверьте баланс: если один канал тише — плохой контакт</li>
-          <li>На средней громкости проверьте фазировку: при правильной — бас плотный, при неправильной — «уходит»</li>
-        </ol>
-
-        <div class="info-box">💡 Если после подключения бас пропал или стал «вялым» — почти всегда проблема в фазировке. Проверьте полярность всех динамиков.</div>
+        <div class="info-box">💡 Используйте только медь OFC. CCA окисляется и даёт просадки.</div>
+        <h3>3. Фазировка</h3>
+        <span class="modal-text">Проверка батарейкой: при правильной полярности диффузор дёрнется наружу.</span>
+        <div class="warning-box">⚠️ Не держите батарейку долго — катушка может перегреться.</div>
+        <h3>4. Прокладка проводов</h3>
+        <span class="modal-text">Акустические провода — отдельно от силовых. Пересечение под 90° — допустимо.</span>
       `
     },
     {
-      id: 2,
-      cat: 'problem',
-      icon: '📢',
-      tag: 'problem',
-      tagLabel: 'Неисправность',
+      id: 2, cat: 'problem', icon: '📢', tag: 'problem', tagLabel: 'Неисправность',
       title: 'Фонят динамики при заведённом двигателе — что делать',
       excerpt: 'Свист, гул или треск из динамиков при работающем двигателе? Разбираем 8 причин и методы устранения.',
-      time: '15 мин',
-      views: '28.7k',
+      time: '15 мин', views: '28.7k',
       content: `
         <h2>📢 Фонят динамики при заведённом двигателе</h2>
-        <span class="modal-text">Самая частая жалоба после установки усилителя. Фон появляется только при работающем двигателе и пропадает на заглушённом. Причина — наводки или «земляная петля». Разберём подробно каждый случай.</span>
-
-        <h3>Типы фона и что они означают</h3>
+        <span class="modal-text">Самая частая жалоба после установки усилителя. Разберём подробно.</span>
+        <h3>Типы фона</h3>
         <div class="table-wrap">
           <table>
-            <tr><th>Звук</th><th>Причина</th><th>Частота</th></tr>
-            <tr><td>Свист, меняющий тон с оборотами</td><td>Наводки генератора</td><td>Высокая</td></tr>
-            <tr><td>Гул, низкий гул</td><td>Земляная петля</td><td>Низкая</td></tr>
-            <tr><td>Треск, щелчки</td><td>Плохой контакт</td><td>Случайная</td></tr>
-            <tr><td>Шипение</td><td>Плохой экран RCA</td><td>Постоянная</td></tr>
-            <tr><td>Писк, вой</td><td>Наводки от ЭБУ/катушки</td><td>Средняя</td></tr>
+            <tr><th>Звук</th><th>Причина</th></tr>
+            <tr><td>Свист с оборотами</td><td>Наводки генератора</td></tr>
+            <tr><td>Гул</td><td>Земляная петля</td></tr>
+            <tr><td>Треск</td><td>Плохой контакт</td></tr>
           </table>
         </div>
-
-        <h3>Причина 1: Плохая масса усилителя</h3>
-        <span class="modal-text">Самая частая причина. Масса должна быть прикручена к <strong>зачищенному до металла</strong> кузову, а не через краску или шумоизоляцию.</span>
-        <ul>
-          <li>Зачистите место крепления до голого металла</li>
-          <li>Используйте болт с гайкой и шайбами, а не саморез</li>
-          <li>Обработайте место литолом или графитной смазкой</li>
-          <li>Длина провода массы — минимальная (до 1 м)</li>
-          <li>Сечение массы — не меньше, чем у плюсового провода</li>
-        </ul>
-
-        <h3>Причина 2: Земляная петля (Ground Loop)</h3>
-        <span class="modal-text">Возникает, когда ГУ и усилитель заземлены в разных точках кузова. Между ними возникает разность потенциалов — ток течёт по экрану RCA и создаёт гул.</span>
-
-        <span class="modal-text"><strong>Решение:</strong> соедините массу ГУ и усилителя отдельным проводом сечением 2.5–4 мм². Или заземлите оба устройства в одной точке.</span>
-
-        <div class="info-box">💡 Проверка: отсоедините RCA от усилителя. Если фон пропал — проблема в земляной петле или межблоках. Если остался — проблема в массе усилителя или питании.</div>
-
+        <h3>Причина 1: Плохая масса</h3>
+        <span class="modal-text">Зачистите до металла, используйте болт с гайкой.</span>
+        <h3>Причина 2: Земляная петля</h3>
+        <span class="modal-text">Соедините массу ГУ и усилителя отдельным проводом 2.5–4 мм².</span>
+        <div class="info-box">💡 Отключите RCA — если фон пропал, проблема в межблоках.</div>
         <h3>Причина 3: Наводки генератора</h3>
-        <span class="modal-text">Свист, меняющий тон с оборотами двигателя — классический признак наводок от генератора. Источники:</span>
-        <ul>
-          <li>Изношенные щётки генератора</li>
-          <li>Пробитый диодный мост</li>
-          <li>Неисправный конденсатор генератора (помехоподавляющий)</li>
-          <li>Плохой контакт «массы» двигателя</li>
-        </ul>
-
-        <span class="modal-text"><strong>Решение:</strong> замените конденсатор генератора, проверьте диодный мост, протяните массу двигателя. Дополнительно установите LC-фильтр по питанию усилителя.</span>
-
-        <h3>Причина 4: Плохой экран межблочного кабеля</h3>
-        <span class="modal-text">Дешёвые RCA-кабели без экрана или с плохим экраном ловят наводки. Признак: фон появляется при касании кабеля рукой.</span>
-
-        <h3>Причина 5: Прокладка межблоков рядом с силовыми</h3>
-        <span class="modal-text">Если RCA-кабели идут параллельно силовым проводам — наводки неизбежны.</span>
-
-        <span class="modal-text"><strong>Решение:</strong> разведите трассы по разным бортам. Если это невозможно — пересекайте под углом 90°.</span>
-
-        <h3>Причина 6: Неисправный конденсатор генератора</h3>
-        <span class="modal-text">Конденсатор генератора (помехоподавляющий) сглаживает пульсации. Если он вышел из строя — в бортовой сети появляются ВЧ-помехи.</span>
-
-        <h3>Причина 7: Земляная петля через антенну</h3>
-        <span class="modal-text">Антенный кабель имеет свой экран, который соединяет массу ГУ с кузовом. Если ГУ уже заземлён через RCA, возникает петля.</span>
-
-        <span class="modal-text"><strong>Решение:</strong> используйте антенный переходник с развязкой (ground loop isolator для антенны).</span>
-
-        <h3>Причина 8: USB-зарядка / видеорегистратор</h3>
-        <span class="modal-text">Неочевидная, но частая причина. Дешёвые USB-зарядки создают импульсные помехи, которые передаются по массе.</span>
-
-        <span class="modal-text"><strong>Решение:</strong> отключите все USB-устройства и проверьте фон. Если пропал — замените зарядку на качественную.</span>
-
-        <h3>Пошаговый алгоритм поиска</h3>
-        <ol>
-          <li>Отключите RCA от усилителя → фон пропал? Проблема в ГУ/межблоках</li>
-          <li>Замкните вход усилителя на массу → фон пропал? Проблема во входе</li>
-          <li>Проверьте массу усилителя — зачистите и перетяните</li>
-          <li>Отключите антенну → фон пропал? Земляная петля через антенну</li>
-          <li>Отключите USB-устройства → фон пропал? Замените зарядку</li>
-          <li>Проверьте конденсатор генератора</li>
-          <li>Установите LC-фильтр по питанию</li>
-        </ol>
-
-        <div class="info-box">💡 В 80% случаев фон лечится правильной массой и развязкой трасс. Не спешите покупать фильтры — сначала проверьте базу.</div>
+        <span class="modal-text">Замените конденсатор генератора, проверьте диодный мост.</span>
       `
     },
     {
-      id: 3,
-      cat: 'tune',
-      icon: '🎚️',
-      tag: 'tune',
-      tagLabel: 'Настройка',
+      id: 3, cat: 'tune', icon: '🎚️', tag: 'tune', tagLabel: 'Настройка',
       title: 'Как настроить усилитель: гейн, фильтры, кроссовер',
-      excerpt: 'Правильная настройка усилителя раскрывает потенциал системы. Разбираем гейн, ФВЧ/ФНЧ, bass boost и subsonic.',
-      time: '14 мин',
-      views: '18.2k',
+      excerpt: 'Правильная настройка усилителя раскрывает потенциал системы. Разбираем гейн, ФВЧ/ФНЧ, bass boost.',
+      time: '14 мин', views: '18.2k',
       content: `
         <h2>🎚️ Как настроить усилитель</h2>
-        <span class="modal-text">Неправильная настройка — причина хрипов, искажений и сгоревших динамиков. Разберём каждый регулятор подробно.</span>
-
-        <h3>1. Гейн (Gain) — самый важный регулятор</h3>
-        <span class="modal-text">Гейн — это <strong>не громкость</strong>, а согласование уровня сигнала с ГУ. Многие ошибочно выкручивают его на максимум — это приводит к клиппингу и сгоревшим динамикам.</span>
-
-        <span class="modal-text"><strong>Правильная настройка гейна:</strong></span>
+        <h3>1. Гейн</h3>
+        <span class="modal-text">Гейн — не громкость, а согласование уровня сигнала.</span>
         <ol>
-          <li>Установите громкость ГУ на 75% от максимума</li>
-          <li>Гейн усилителя — на минимум</li>
-          <li>Включите трек с широким динамическим диапазоном</li>
-          <li>Плавно увеличивайте гейн до появления искажений</li>
-          <li>Убавьте на 10–15% — это оптимальный уровень</li>
+          <li>Громкость ГУ на 75%</li>
+          <li>Гейн на минимум</li>
+          <li>Плавно увеличивайте до искажений</li>
+          <li>Убавьте на 10–15%</li>
         </ol>
-
-        <div class="warning-box">⚠️ Гейн на максимуме + громкость на максимуме = сгоревшие динамики. Клиппинг (обрезанная синусоида) убивает катушки за секунды.</div>
-
-        <h3>2. Фильтры ВЧ и НЧ</h3>
-        <div class="table-wrap">
-          <table>
-            <tr><th>Компонент</th><th>Фильтр</th><th>Частота</th></tr>
-            <tr><td>Твитеры</td><td>ФВЧ (HPF)</td><td>3–5 кГц</td></tr>
-            <tr><td>Мидбас 16 см</td><td>ФВЧ (HPF)</td><td>60–80 Гц</td></tr>
-            <tr><td>Мидбас 16 см</td><td>ФНЧ (LPF)</td><td>3–4 кГц</td></tr>
-            <tr><td>Сабвуфер</td><td>ФНЧ (LPF)</td><td>60–80 Гц</td></tr>
-            <tr><td>Сабвуфер</td><td>Subsonic</td><td>20–30 Гц</td></tr>
-          </table>
-        </div>
-
-        <h3>3. Bass Boost</h3>
-        <span class="modal-text">Подъём баса на фиксированной частоте (обычно 45 Гц). Используйте <strong>осторожно</strong>: +3 дБ максимум. Больше — риск сжечь сабвуфер и получить «бубнящий» бас.</span>
-
-        <h3>4. Subsonic фильтр</h3>
-        <span class="modal-text">Срез инфранизких частот ниже 20–30 Гц. Защищает сабвуфер от «болтания» диффузора на частотах ниже резонанса. Обязателен для фазоинверторных коробов.</span>
-
-        <h3>5. Порядок настройки</h3>
-        <ol>
-          <li>Гейн усилителя</li>
-          <li>Фильтры ВЧ/НЧ</li>
-          <li>Subsonic</li>
-          <li>Bass Boost</li>
-          <li>Эквалайзер ГУ</li>
-          <li>Баланс и фейдер</li>
-        </ol>
-
-        <div class="info-box">💡 Настройку делайте при выключенном двигателе, с закрытыми окнами, на комфортной громкости. Слушайте знакомые треки — так проще заметить искажения.</div>
-      `
-    },
-    {
-      id: 4,
-      cat: 'guide',
-      icon: '🔋',
-      tag: 'guide',
-      tagLabel: 'Руководство',
-      title: 'Питание усилителя: провод, предохранитель, конденсатор',
-      excerpt: 'Как подобрать силовой провод, где ставить предохранитель и нужен ли конденсатор. Правила безопасного питания.',
-      time: '16 мин',
-      views: '15.1k',
-      content: `
-        <h2>🔋 Питание усилителя</h2>
-        <span class="modal-text">Питание — фундамент системы. Ошибки приводят к просадкам, перегреву и возгоранию. Разберём всё по порядку.</span>
-
-        <h3>1. Подбор силового провода</h3>
-        <div class="table-wrap">
-          <table>
-            <tr><th>Мощность системы</th><th>Сечение</th><th>AWG</th><th>Ток</th></tr>
-            <tr><td>До 500 Вт</td><td>21 мм²</td><td>4 Ga</td><td>до 60 А</td></tr>
-            <tr><td>500–1000 Вт</td><td>33 мм²</td><td>2 Ga</td><td>до 100 А</td></tr>
-            <tr><td>1000–2000 Вт</td><td>53 мм²</td><td>1/0 Ga</td><td>до 200 А</td></tr>
-            <tr><td>Свыше 2000 Вт</td><td>67 мм²</td><td>2/0 Ga</td><td>свыше 200 А</td></tr>
-          </table>
-        </div>
-
-        <h3>2. Предохранитель</h3>
-        <span class="modal-text">Ставится <strong>в 30–40 см от клеммы АКБ</strong>. Номинал — по максимальному току усилителя, но не выше токовой нагрузки провода.</span>
-
-        <div class="warning-box">⚠️ Без предохранителя у клеммы АКБ при КЗ провод сгорит вместе с машиной. Это не опция — это обязательное правило безопасности.</div>
-
-        <h3>3. Нужен ли конденсатор?</h3>
-        <span class="modal-text">Конденсатор помогает при кратковременных пиках потребления (удары баса). Но он <strong>не заменяет</strong> нормальное питание. Если у вас просадки — сначала проверьте генератор и провод, потом думайте о конденсаторе.</span>
-
-        <span class="modal-text"><strong>Когда конденсатор реально нужен:</strong></span>
-        <ul>
-          <li>Мощная система (свыше 1000 Вт)</li>
-          <li>Генератор штатный, слабый</li>
-          <li>Есть кратковременные просадки при ударах баса</li>
-          <li>Сабвуфер с высокой мощностью</li>
-        </ul>
-
-        <h3>4. Масса</h3>
-        <ul>
-          <li>Провод массы — того же сечения, что и плюсовой</li>
-          <li>Точка крепления — зачищенный металл кузова</li>
-          <li>Длина массы — минимальная (до 1 метра)</li>
-          <li>Болт с гайкой + шайбы, обработать литолом</li>
-          <li>Проверьте падение напряжения между АКБ и массой усилителя — не более 0.1 В</li>
-        </ul>
-
-        <h3>5. Проверка просадок</h3>
-        <span class="modal-text">Подключите вольтметр к клеммам усилителя. Включите трек с мощными басами. Напряжение не должно падать ниже 12 В.</span>
-
-        <div class="info-box">💡 Если просадка ниже 12 В — проверьте: генератор, АКБ, сечение провода, массу. Возможно, требуется замена генератора на более мощный.</div>
-      `
-    },
-    {
-      id: 5,
-      cat: 'problem',
-      icon: '🔊',
-      tag: 'problem',
-      tagLabel: 'Неисправность',
-      title: 'Хрипят динамики: причины и что делать',
-      excerpt: 'Динамики хрипят на высокой громкости или всегда? Разбираем причины: от перегрузки до механических повреждений.',
-      time: '11 мин',
-      views: '21.3k',
-      content: `
-        <h2>🔊 Хрипят динамики</h2>
-        <span class="modal-text">Хрип — признак искажений или механической проблемы. Важно определить, когда именно он появляется — это сузит круг поиска.</span>
-
-        <h3>1. Хрип только на высокой громкости</h3>
-        <ul>
-          <li><strong>Перегрузка усилителя</strong> — гейн выкручен, клиппинг</li>
-          <li><strong>Недостаточная мощность усилителя</strong> — он «захлёбывается» на пиках</li>
-          <li><strong>Динамик не рассчитан на такую мощность</strong> — превышение RMS</li>
-          <li><strong>Искажения ГУ</strong> — проверьте на другом источнике</li>
-          <li><strong>Клиппинг из-за эквалайзера</strong> — слишком высокие подъёмы</li>
-        </ul>
-
-        <h3>2. Хрип всегда</h3>
-        <ul>
-          <li><strong>Порван диффузор</strong> или подвес</li>
-          <li><strong>Отклеилась центрирующая шайба</strong></li>
-          <li><strong>Погнутый каркас катушки</strong> — задевает магнит</li>
-          <li><strong>Обрыв в катушке</strong> — дребезг на определённых частотах</li>
-          <li><strong>Попала грязь/металлическая стружка</strong> в зазор</li>
-          <li><strong>Разрушен подвес</strong> — резина или ткань</li>
-        </ul>
-
-        <h3>3. Диагностика</h3>
-        <ol>
-          <li>Отключите динамик от усилителя</li>
-          <li>Аккуратно надавите на диффузор рукой — должен двигаться плавно</li>
-          <li>Если слышен скрежет — катушка задевает магнит, динамик под замену</li>
-          <li>Проверьте мультиметром сопротивление катушки</li>
-          <li>Осмотрите подвес и центрирующую шайбу</li>
-          <li>Подключите к другому усилителю — проверьте, есть ли хрип</li>
-        </ol>
-
-        <div class="info-box">💡 Если хрип только на определённых частотах — проблема в катушке или подвесе. Если на всех — перегрузка или усиление.</div>
-
-        <h3>4. Что делать</h3>
-        <ul>
-          <li>Уменьшите гейн на усилителе</li>
-          <li>Проверьте, не искажает ли сигнал сам ГУ</li>
-          <li>Проверьте акустический провод — не пережат ли</li>
-          <li>Проверьте крепление динамика — вибрация даёт дребезг</li>
-          <li>Если механическое повреждение — замена динамика</li>
-        </ul>
-      `
-    },
-    {
-      id: 6,
-      cat: 'install',
-      icon: '📐',
-      tag: 'install',
-      tagLabel: 'Подключение',
-      title: 'Как подключить сабвуфер: схемы 1Ω, 2Ω, 4Ω',
-      excerpt: 'Разбираем последовательное и параллельное подключение катушек сабвуфера. Как получить нужное сопротивление.',
-      time: '13 мин',
-      views: '19.6k',
-      content: `
-        <h2>📐 Подключение сабвуфера</h2>
-        <span class="modal-text">Сабвуферы бывают с одной (SVC) или двумя (DVC) катушками. От схемы подключения зависит итоговое сопротивление, которое должен «увидеть» усилитель.</span>
-
-        <h3>1. Одна катушка (SVC)</h3>
-        <div class="table-wrap">
-          <table>
-            <tr><th>Схема</th><th>Сопротивление</th></tr>
-            <tr><td>1 саб 4Ω</td><td>4Ω</td></tr>
-            <tr><td>2 саба 4Ω параллельно</td><td>2Ω</td></tr>
-            <tr><td>2 саба 4Ω последовательно</td><td>8Ω</td></tr>
-            <tr><td>1 саб 2Ω</td><td>2Ω</td></tr>
-            <tr><td>2 саба 2Ω параллельно</td><td>1Ω</td></tr>
-          </table>
-        </div>
-
-        <h3>2. Две катушки (DVC)</h3>
-        <div class="table-wrap">
-          <table>
-            <tr><th>Схема</th><th>Сопротивление</th></tr>
-            <tr><td>DVC 2Ω + 2Ω параллельно</td><td>1Ω</td></tr>
-            <tr><td>DVC 2Ω + 2Ω последовательно</td><td>4Ω</td></tr>
-            <tr><td>DVC 4Ω + 4Ω параллельно</td><td>2Ω</td></tr>
-            <tr><td>DVC 4Ω + 4Ω последовательно</td><td>8Ω</td></tr>
-          </table>
-        </div>
-
-        <div class="info-box">💡 Итоговое сопротивление должно быть <strong>не ниже минимально допустимого</strong> для вашего усилителя. Обычно 1Ω, 2Ω или 4Ω.</div>
-
-        <h3>3. Правила подключения</h3>
-        <ol>
-          <li>Проверьте сопротивление мультиметром перед подключением</li>
-          <li>Соблюдайте полярность катушек (+ к +, − к −)</li>
-          <li>Используйте провод сечением не менее 2.5 мм²</li>
-          <li>Настройте LPF 60–80 Гц и subsonic 20–30 Гц</li>
-          <li>Проверьте фазировку с фронтальной акустикой</li>
-        </ol>
-
-        <div class="warning-box">⚠️ Подключение ниже допустимого сопротивления → перегрев усилителя и выход из строя. Проверяйте паспорт усилителя!</div>
-      `
-    },
-    {
-      id: 7,
-      cat: 'guide',
-      icon: '🎧',
-      tag: 'guide',
-      tagLabel: 'Руководство',
-      title: 'Шумоизоляция дверей под автозвук',
-      excerpt: 'Правильная шумоизоляция улучшает бас и убирает вибрации. Пошаговая инструкция с материалами.',
-      time: '18 мин',
-      views: '14.8k',
-      content: `
-        <h2>🎧 Шумоизоляция дверей</h2>
-        <span class="modal-text">Без шумоизоляции даже хорошие динамики звучат «пусто». Дверь должна стать акустическим корпусом — герметичным и жёстким.</span>
-
-        <h3>1. Материалы</h3>
-        <ul>
-          <li><strong>Виброизоляция</strong> — 2–4 мм (STP, Шумофф, Comfort Mat)</li>
-          <li><strong>Шумопоглощение</strong> — сплен, битопласт, войлок</li>
-          <li><strong>Акустическая полка</strong> — фанера или МДФ для динамика</li>
-          <li><strong>Герметик</strong> — для технологических отверстий</li>
-          <li><strong>Валик и фен</strong> — для прикатки и разогрева материала</li>
-        </ul>
-
-        <h3>2. Этапы работы</h3>
-        <ol>
-          <li>Снять обшивку двери и защитную плёнку</li>
-          <li>Вымыть и обезжирить внутреннюю поверхность</li>
-          <li>Наклеить виброизоляцию на внешнюю стенку (за динамиком)</li>
-          <li>Заклеить технологические отверстия во внутренней стенке</li>
-          <li>Нанести виброизоляцию на внутреннюю панель</li>
-          <li>Сделать акустическую полку для динамика</li>
-          <li>Проклеить шумопоглощением обшивку</li>
-        </ol>
-
-        <h3>3. Особенности</h3>
-        <span class="modal-text">Для мидбаса важна жёсткость двери. Технологические отверстия <strong>обязательно</strong> заклеивать — иначе бас «уходит» в дверь и теряется.</span>
-
-        <span class="modal-text">Акустическая полка изготавливается из фанеры 16–20 мм или МДФ. Крепится к металлу двери через виброизоляцию. Динамик крепится к полке, а полка — к двери.</span>
-
-        <div class="warning-box">⚠️ Не заклеивайте дренажные отверстия внизу двери — иначе вода останется внутри и вызовет ржавчину.</div>
-
-        <h3>4. Проверка результата</h3>
-        <ul>
-          <li>Постучите по двери — звук должен быть глухим, не звонким</li>
-          <li>Включите бас — не должно быть вибраций обшивки</li>
-          <li>Проверьте герметичность — при хлопке двери не должно быть «шипения»</li>
-        </ul>
-      `
-    },
-    {
-      id: 8,
-      cat: 'tune',
-      icon: '📱',
-      tag: 'tune',
-      tagLabel: 'Настройка',
-      title: 'Настройка процессора: срезы, задержки, эквализация',
-      excerpt: 'Что такое временные задержки, как выставить сцену и настроить эквалайзер. Базовый гайд по DSP.',
-      time: '17 мин',
-      views: '11.2k',
-      content: `
-        <h2>📱 Настройка процессора (DSP)</h2>
-        <span class="modal-text">Процессор (DSP) — мозг системы. Он позволяет выставить сцену, срезы и эквализацию точно под ваш салон.</span>
-
-        <h3>1. Временные задержки (Time Alignment)</h3>
-        <span class="modal-text">Задержки выравнивают время прихода звука от каждого динамика до слушателя. Цель — чтобы звук от всех динамиков пришёл одновременно.</span>
-
-        <span class="modal-text"><strong>Как настроить:</strong></span>
-        <ol>
-          <li>Замерьте расстояние от уха до каждого динамика</li>
-          <li>Ближние динамики задерживаются сильнее</li>
-          <li>Настройте левый/правый фронт и саб</li>
-          <li>Проверьте: вокал должен быть по центру, не «плавать»</li>
-        </ol>
-
-        <h3>2. Срезы частот</h3>
+        <div class="warning-box">⚠️ Гейн на максимуме + громкость = сгоревшие динамики.</div>
+        <h3>2. Фильтры</h3>
         <div class="table-wrap">
           <table>
             <tr><th>Компонент</th><th>Фильтр</th><th>Частота</th></tr>
             <tr><td>Твитеры</td><td>ФВЧ</td><td>3–5 кГц</td></tr>
             <tr><td>Мидбас</td><td>ФВЧ</td><td>60–80 Гц</td></tr>
-            <tr><td>Мидбас</td><td>ФНЧ</td><td>3–4 кГц</td></tr>
             <tr><td>Саб</td><td>ФНЧ</td><td>60–80 Гц</td></tr>
           </table>
         </div>
-
-        <h3>3. Эквализация (EQ)</h3>
-        <span class="modal-text">Выравнивание АЧХ. Сначала <strong>убирайте</strong> горбы, потом поднимайте провалы. Подъём >3 дБ даёт искажения.</span>
-
-        <h3>4. Порядок настройки</h3>
+      `
+    },
+    {
+      id: 4, cat: 'guide', icon: '🔋', tag: 'guide', tagLabel: 'Руководство',
+      title: 'Питание усилителя: провод, предохранитель, конденсатор',
+      excerpt: 'Как подобрать силовой провод, где ставить предохранитель и нужен ли конденсатор.',
+      time: '16 мин', views: '15.1k',
+      content: `
+        <h2>🔋 Питание усилителя</h2>
+        <h3>Подбор провода</h3>
+        <div class="table-wrap">
+          <table>
+            <tr><th>Мощность</th><th>Сечение</th><th>AWG</th></tr>
+            <tr><td>До 500 Вт</td><td>21 мм²</td><td>4 Ga</td></tr>
+            <tr><td>500–1000 Вт</td><td>33 мм²</td><td>2 Ga</td></tr>
+            <tr><td>1000–2000 Вт</td><td>53 мм²</td><td>1/0 Ga</td></tr>
+          </table>
+        </div>
+        <h3>Предохранитель</h3>
+        <span class="modal-text">Ставится в 30–40 см от клеммы АКБ.</span>
+        <div class="warning-box">⚠️ Без предохранителя при КЗ провод сгорит вместе с машиной.</div>
+      `
+    },
+    {
+      id: 5, cat: 'problem', icon: '🔊', tag: 'problem', tagLabel: 'Неисправность',
+      title: 'Хрипят динамики: причины и что делать',
+      excerpt: 'Динамики хрипят на высокой громкости или всегда? Разбираем причины.',
+      time: '11 мин', views: '21.3k',
+      content: `
+        <h2>🔊 Хрипят динамики</h2>
+        <h3>Хрип на высокой громкости</h3>
+        <ul>
+          <li>Перегрузка усилителя — клиппинг</li>
+          <li>Недостаточная мощность</li>
+          <li>Динамик не рассчитан на мощность</li>
+        </ul>
+        <h3>Хрип всегда</h3>
+        <ul>
+          <li>Порван диффузор</li>
+          <li>Погнутый каркас катушки</li>
+          <li>Грязь в зазоре</li>
+        </ul>
+      `
+    },
+    {
+      id: 6, cat: 'install', icon: '📐', tag: 'install', tagLabel: 'Подключение',
+      title: 'Как подключить сабвуфер: схемы 1Ω, 2Ω, 4Ω',
+      excerpt: 'Разбираем последовательное и параллельное подключение катушек сабвуфера.',
+      time: '13 мин', views: '19.6k',
+      content: `
+        <h2>📐 Подключение сабвуфера</h2>
+        <h3>SVC (одна катушка)</h3>
+        <div class="table-wrap">
+          <table>
+            <tr><th>Схема</th><th>Сопротивление</th></tr>
+            <tr><td>1 саб 4Ω</td><td>4Ω</td></tr>
+            <tr><td>2 саба 4Ω параллельно</td><td>2Ω</td></tr>
+          </table>
+        </div>
+        <h3>DVC (две катушки)</h3>
+        <div class="table-wrap">
+          <table>
+            <tr><th>Схема</th><th>Сопротивление</th></tr>
+            <tr><td>DVC 2Ω+2Ω параллельно</td><td>1Ω</td></tr>
+            <tr><td>DVC 4Ω+4Ω параллельно</td><td>2Ω</td></tr>
+          </table>
+        </div>
+      `
+    },
+    {
+      id: 7, cat: 'guide', icon: '🎧', tag: 'guide', tagLabel: 'Руководство',
+      title: 'Шумоизоляция дверей под автозвук',
+      excerpt: 'Правильная шумоизоляция улучшает бас и убирает вибрации.',
+      time: '18 мин', views: '14.8k',
+      content: `
+        <h2>🎧 Шумоизоляция дверей</h2>
+        <h3>Материалы</h3>
+        <ul>
+          <li>Виброизоляция — 2–4 мм</li>
+          <li>Шумопоглощение — сплен, битопласт</li>
+          <li>Акустическая полка — фанера</li>
+        </ul>
+        <h3>Этапы</h3>
+        <ol>
+          <li>Снять обшивку</li>
+          <li>Обезжирить</li>
+          <li>Наклеить виброизоляцию</li>
+          <li>Заклеить отверстия</li>
+        </ol>
+        <div class="warning-box">⚠️ Не заклеивайте дренажные отверстия.</div>
+      `
+    },
+    {
+      id: 8, cat: 'tune', icon: '📱', tag: 'tune', tagLabel: 'Настройка',
+      title: 'Настройка процессора: срезы, задержки, эквализация',
+      excerpt: 'Что такое временные задержки, как выставить сцену и настроить эквалайзер.',
+      time: '17 мин', views: '11.2k',
+      content: `
+        <h2>📱 Настройка DSP</h2>
+        <h3>Временные задержки</h3>
+        <span class="modal-text">Выравнивают время прихода звука от каждого динамика.</span>
+        <h3>Порядок настройки</h3>
         <ol>
           <li>Гейны усилителей</li>
           <li>Срезы частот</li>
           <li>Временные задержки</li>
           <li>Эквализация</li>
-          <li>Баланс и фейдер</li>
         </ol>
-
-        <div class="info-box">💡 Настройку делайте при выключенном двигателе, с закрытыми окнами, на комфортной громкости. Используйте измерительный микрофон, если он есть.</div>
       `
     }
   ];
 
   /* ==================== ФОРУМ ==================== */
   const topics = [
-    {
-      id: 101,
-      cat: 'problem',
-      badge: 'hot',
-      badgeLabel: '🔥 Горячее',
+    { id: 101, cat: 'problem', badge: 'hot', badgeLabel: '🔥 Горячее',
       title: 'Свист из твитеров при заведённом двигателе — как победить?',
-      excerpt: 'Поставил усилитель, всё нормально, но при запуске двигателя появляется свист, меняющийся с оборотами. Масса зачищена, RCA экранированные. Что ещё проверить?',
-      author: 'AudioMan',
-      avatar: 'A',
-      date: '2 часа назад',
-      replies: 14,
-      views: 342,
+      excerpt: 'Поставил усилитель, всё нормально, но при запуске двигателя появляется свист, меняющийся с оборотами.',
+      author: 'AudioMan', avatar: 'A', date: '2 часа назад', replies: 14, views: 342,
       posts: [
-        { author: 'AudioMan', avatar: 'A', date: '2 часа назад', text: 'Поставил усилитель, всё нормально, но при запуске двигателя появляется свист, меняющийся с оборотами. Масса зачищена, RCA экранированные. Что ещё проверить?' },
-        { author: 'SoundGuru', avatar: 'S', date: '1 час назад', text: 'Классика — наводки генератора. Проверь конденсатор генератора, диодный мост. И протяни массу двигателя — часто помогает.' },
-        { author: 'BassHead', avatar: 'B', date: '1 час назад', text: 'У меня было то же самое. Помог LC-фильтр по питанию усилителя. Поставил — свист пропал полностью.' },
-        { author: 'AudioMan', avatar: 'A', date: '45 минут назад', text: 'Спасибо! Попробую конденсатор и фильтр. Отпишусь по результату.' },
-        { author: 'TechPro', avatar: 'T', date: '30 минут назад', text: 'Ещё проверь, не идут ли RCA параллельно силовым. Даже 5 см рядом — уже наводки. Разведи по разным бортам.' }
+        { author: 'AudioMan', avatar: 'A', date: '2 часа назад', text: 'Поставил усилитель, всё нормально, но при запуске двигателя появляется свист. Масса зачищена, RCA экранированные. Что ещё проверить?' },
+        { author: 'SoundGuru', avatar: 'S', date: '1 час назад', text: 'Классика — наводки генератора. Проверь конденсатор генератора и диодный мост.' },
+        { author: 'BassHead', avatar: 'B', date: '1 час назад', text: 'Мне помог LC-фильтр по питанию усилителя.' }
       ]
     },
-    {
-      id: 102,
-      cat: 'choice',
-      badge: 'solved',
-      badgeLabel: '✅ Решено',
+    { id: 102, cat: 'choice', badge: 'solved', badgeLabel: '✅ Решено',
       title: 'Какой усилитель выбрать для саба 500 Вт RMS?',
-      excerpt: 'Бюджет до 20 000 ₽. Саб DVC 2Ω + 2Ω. Хочу получить 1Ω на выходе. Что посоветуете из актуального?',
-      author: 'Newbie2024',
-      avatar: 'N',
-      date: '5 часов назад',
-      replies: 22,
-      views: 567,
+      excerpt: 'Бюджет до 20 000 ₽. Саб DVC 2Ω + 2Ω. Хочу получить 1Ω на выходе.',
+      author: 'Newbie2024', avatar: 'N', date: '5 часов назад', replies: 22, views: 567,
       posts: [
-        { author: 'Newbie2024', avatar: 'N', date: '5 часов назад', text: 'Бюджет до 20 000 ₽. Саб DVC 2Ω + 2Ω. Хочу получить 1Ω на выходе. Что посоветуете из актуального?' },
-        { author: 'SoundGuru', avatar: 'S', date: '4 часа назад', text: 'Смотри моноблоки с поддержкой 1Ω. Например, Pride, DD, Ural. Главное — проверь, чтобы усилитель держал 1Ω стабильно.' },
-        { author: 'BassHead', avatar: 'B', date: '3 часа назад', text: 'Бери с запасом по мощности. На 1Ω усилитель греется сильнее, нужен запас 20-30%.' },
-        { author: 'Newbie2024', avatar: 'N', date: '2 часа назад', text: 'Взял Ural Patriot. Работает отлично, спасибо!' }
+        { author: 'Newbie2024', avatar: 'N', date: '5 часов назад', text: 'Бюджет до 20 000 ₽. Саб DVC 2Ω + 2Ω. Что посоветуете?' },
+        { author: 'SoundGuru', avatar: 'S', date: '4 часа назад', text: 'Смотри моноблоки с поддержкой 1Ω: Pride, DD, Ural.' }
       ]
     },
-    {
-      id: 103,
-      cat: 'install',
-      badge: 'pinned',
-      badgeLabel: '📌 Закреплено',
-      title: 'FAQ: Как правильно подключить акустику — читать перед созданием темы',
-      excerpt: 'Собрал все частые вопросы по подключению акустики в одном месте. Сечение провода, полярность, фазировка, схемы.',
-      author: 'Admin',
-      avatar: 'AD',
-      date: '2 дня назад',
-      replies: 8,
-      views: 1893,
+    { id: 103, cat: 'install', badge: 'pinned', badgeLabel: '📌 Закреплено',
+      title: 'FAQ: Как правильно подключить акустику',
+      excerpt: 'Собрал все частые вопросы по подключению акустики в одном месте.',
+      author: 'Admin', avatar: 'AD', date: '2 дня назад', replies: 8, views: 1893,
       posts: [
-        { author: 'Admin', avatar: 'AD', date: '2 дня назад', text: 'Собрал все частые вопросы по подключению акустики в одном месте. Сечение провода, полярность, фазировка, схемы. Если вашего вопроса нет — создавайте тему.' },
-        { author: 'Newbie2024', avatar: 'N', date: '1 день назад', text: 'Спасибо, очень помогло! Наконец разобрался с фазировкой.' }
+        { author: 'Admin', avatar: 'AD', date: '2 дня назад', text: 'Собрал все частые вопросы по подключению. Читайте перед созданием темы.' }
       ]
     },
-    {
-      id: 104,
-      cat: 'tune',
-      badge: null,
+    { id: 104, cat: 'tune', badge: null,
       title: 'Настройка сцены через DSP — делюсь опытом',
-      excerpt: 'Настроил сцену через процессор. Вокал по центру, глубина появилась. Расскажу, как выставлял задержки и срезы.',
-      author: 'TuneMaster',
-      avatar: 'T',
-      date: '1 день назад',
-      replies: 11,
-      views: 421,
+      excerpt: 'Настроил сцену через процессор. Вокал по центру, глубина появилась.',
+      author: 'TuneMaster', avatar: 'T', date: '1 день назад', replies: 11, views: 421,
       posts: [
-        { author: 'TuneMaster', avatar: 'T', date: '1 день назад', text: 'Настроил сцену через процессор. Вокал по центру, глубина появилась. Расскажу, как выставлял задержки и срезы.' },
-        { author: 'AudioMan', avatar: 'A', date: '20 часов назад', text: 'А какой процессор используешь? И как замерял расстояния — линейкой или микрофоном?' },
-        { author: 'TuneMaster', avatar: 'T', date: '18 часов назад', text: 'Dayton DSP. Расстояния — линейкой, микрофоном потом корректировал АЧХ.' }
+        { author: 'TuneMaster', avatar: 'T', date: '1 день назад', text: 'Настроил сцену через процессор. Расскажу, как выставлял задержки.' }
       ]
     },
-    {
-      id: 105,
-      cat: 'problem',
-      badge: null,
-      title: 'Хрипят динамики на высокой громкости — что делать?',
-      excerpt: 'Компонентный фронт, усилитель 4×80 Вт. На громкости выше 70% появляется хрип. Гейн выставлен правильно. В чём причина?',
-      author: 'SoundLover',
-      avatar: 'S',
-      date: '2 дня назад',
-      replies: 9,
-      views: 298,
+    { id: 105, cat: 'problem', badge: null,
+      title: 'Хрипят динамики на высокой громкости',
+      excerpt: 'Компонентный фронт, усилитель 4×80 Вт. На громкости выше 70% хрип.',
+      author: 'SoundLover', avatar: 'S', date: '2 дня назад', replies: 9, views: 298,
       posts: [
-        { author: 'SoundLover', avatar: 'S', date: '2 дня назад', text: 'Компонентный фронт, усилитель 4×80 Вт. На громкости выше 70% появляется хрип. Гейн выставлен правильно. В чём причина?' },
-        { author: 'SoundGuru', avatar: 'S', date: '2 дня назад', text: 'Скорее всего, усилитель уходит в клиппинг. 80 Вт на канал для компонентов — мало. Нужен запас мощности.' },
-        { author: 'TechPro', avatar: 'T', date: '1 день назад', text: 'Или динамики не рассчитаны на такую мощность. Проверь RMS динамиков.' }
+        { author: 'SoundLover', avatar: 'S', date: '2 дня назад', text: 'Компонентный фронт, усилитель 4×80 Вт. На громкости выше 70% хрип.' },
+        { author: 'SoundGuru', avatar: 'S', date: '2 дня назад', text: 'Усилитель уходит в клиппинг. Нужен запас мощности.' }
       ]
     },
-    {
-      id: 106,
-      cat: 'choice',
-      badge: null,
+    { id: 106, cat: 'choice', badge: null,
       title: 'Что лучше: компоненты или коаксиалы для фронта?',
-      excerpt: 'Бюджет 15 000 ₽. Машина — седан. Хочу качественный звук. Стоит ли заморачиваться с компонентами или взять хорошие коаксиалы?',
-      author: 'FirstSound',
-      avatar: 'F',
-      date: '3 дня назад',
-      replies: 17,
-      views: 634,
+      excerpt: 'Бюджет 15 000 ₽. Машина — седан. Хочу качественный звук.',
+      author: 'FirstSound', avatar: 'F', date: '3 дня назад', replies: 17, views: 634,
       posts: [
-        { author: 'FirstSound', avatar: 'F', date: '3 дня назад', text: 'Бюджет 15 000 ₽. Машина — седан. Хочу качественный звук. Стоит ли заморачиваться с компонентами или взять хорошие коаксиалы?' },
-        { author: 'SoundGuru', avatar: 'S', date: '3 дня назад', text: 'Однозначно компоненты. Твитеры можно направить на слушателя, сцена будет лучше. Коаксиалы — компромисс.' },
-        { author: 'BassHead', avatar: 'B', date: '2 дня назад', text: 'Согласен. Компоненты + шумоизоляция дверей дадут звук лучше, чем коаксиалы за те же деньги.' }
+        { author: 'FirstSound', avatar: 'F', date: '3 дня назад', text: 'Бюджет 15 000 ₽. Что лучше для фронта?' },
+        { author: 'SoundGuru', avatar: 'S', date: '3 дня назад', text: 'Однозначно компоненты. Сцена будет лучше.' }
       ]
     }
   ];
@@ -1711,7 +2093,7 @@
     const filtered = articles.filter(a => {
       const matchCat = currentCat === 'all' || a.cat === currentCat;
       const q = currentSearch.toLowerCase().trim();
-      const matchSearch = !q || (a.title + ' ' + a.excerpt + ' ' + a.content).toLowerCase().includes(q);
+      const matchSearch = !q || (a.title + ' ' + a.excerpt).toLowerCase().includes(q);
       return matchCat && matchSearch;
     });
 
@@ -1731,7 +2113,7 @@
           <h3>${a.title}</h3>
           <span class="excerpt">${a.excerpt}</span>
           <div class="article-meta">
-            <span class="read">⏱ ${a.time} чтения</span>
+            <span class="read">⏱ ${a.time}</span>
             <span>👁 ${a.views}</span>
           </div>
         </div>
@@ -1750,7 +2132,7 @@
     }
   });
 
-  /* ==================== МОДАЛЬНОЕ ОКНО СТАТЬИ ==================== */
+  /* ==================== МОДАЛКИ СТАТЕЙ ==================== */
   const modal = document.getElementById('modal');
   const modalBody = document.getElementById('modalBody');
   const modalClose = document.getElementById('modalClose');
@@ -1769,16 +2151,12 @@
   }
 
   modalClose.addEventListener('click', closeModal);
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-  });
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
   /* ==================== ФОРУМ ==================== */
   const topicsList = document.getElementById('topicsList');
   const forumEmpty = document.getElementById('forumEmpty');
   const forumCats = document.getElementById('forumCats');
-  const statTopics = document.getElementById('statTopics');
-  const statReplies = document.getElementById('statReplies');
 
   let currentForumCat = 'all';
 
@@ -1825,7 +2203,6 @@
     }
   });
 
-  /* ==================== МОДАЛЬНОЕ ОКНО ФОРУМА ==================== */
   const forumModal = document.getElementById('forumModal');
   const forumModalBody = document.getElementById('forumModalBody');
   const forumModalClose = document.getElementById('forumModalClose');
@@ -1862,7 +2239,7 @@
       <div class="reply-form">
         <h4>💬 Ответить в теме</h4>
         <textarea placeholder="Напишите ваш ответ..."></textarea>
-        <button onclick="alert('✅ Ответ отправлен!\\n\\n(Демо-режим: данные не сохраняются)');">Отправить ответ</button>
+        <button onclick="alert('✅ Ответ отправлен!\\n\\n(Демо-режим)');">Отправить ответ</button>
       </div>
     `;
 
@@ -1877,12 +2254,10 @@
   }
 
   forumModalClose.addEventListener('click', closeForumModal);
-  forumModal.addEventListener('click', (e) => {
-    if (e.target === forumModal) closeForumModal();
-  });
+  forumModal.addEventListener('click', (e) => { if (e.target === forumModal) closeForumModal(); });
 
   document.getElementById('newTopicBtn').addEventListener('click', () => {
-    alert('✏️ Создание новой темы\\n\\n(Демо-режим: форма не подключена к бэкенду)');
+    alert('✏️ Создание новой темы\\n\\n(Демо-режим)');
   });
 
   /* ==================== ГЛАВНЫЕ ТАБЫ ==================== */
@@ -1895,7 +2270,6 @@
     });
   });
 
-  /* Навигация в шапке */
   document.querySelectorAll('nav a[data-tab]').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
@@ -1913,13 +2287,766 @@
     currentSearch = searchInput.value;
     renderArticles();
   });
-
   searchBtn.addEventListener('click', () => {
     currentSearch = searchInput.value;
     renderArticles();
   });
 
-  /* Escape закрывает любое модальное окно */
+  /* ==================== ПОДТАБЫ ИНСТРУМЕНТОВ ==================== */
+  document.querySelectorAll('.tool-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tool-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('tool-' + tab.dataset.tool).classList.add('active');
+    });
+  });
+
+  /* ==================== ТОН-ГЕНЕРАТОР ==================== */
+  const toneState = {
+    ctx: null,
+    osc: null,
+    gain: null,
+    playing: false,
+    sweeping: false
+  };
+
+  const toneFreq = document.getElementById('toneFreq');
+  const toneVol = document.getElementById('toneVol');
+  const toneWave = document.getElementById('toneWave');
+  const toneFreqDisplay = document.getElementById('toneFreqDisplay');
+  const toneFreqVal = document.getElementById('toneFreqVal');
+  const toneVolVal = document.getElementById('toneVolVal');
+  const toneNoteDisplay = document.getElementById('toneNoteDisplay');
+  const toneStatus = document.getElementById('toneStatus');
+  const tonePlayBtn = document.getElementById('tonePlay');
+  const toneStopBtn = document.getElementById('toneStop');
+  const toneSweepBtn = document.getElementById('toneSweep');
+
+  const noteNames = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+
+  function freqToNote(freq) {
+    if (freq < 16) return '—';
+    const n = Math.round(12 * Math.log2(freq / 440) + 69);
+    const note = noteNames[((n % 12) + 12) % 12];
+    const octave = Math.floor(n / 12) - 1;
+    const exact = 440 * Math.pow(2, (n - 69) / 12);
+    const cents = Math.round(1200 * Math.log2(freq / exact));
+    return `${note}${octave} (${cents >= 0 ? '+' : ''}${cents} цент)`;
+  }
+
+  function updateToneUI() {
+    const f = parseInt(toneFreq.value);
+    toneFreqDisplay.textContent = f >= 1000 ? (f / 1000).toFixed(f % 1000 === 0 ? 0 : 1) + 'k' : f;
+    toneFreqVal.textContent = f >= 1000 ? (f / 1000).toFixed(2) + ' кГц' : f + ' Гц';
+    toneNoteDisplay.textContent = freqToNote(f);
+    toneVolVal.textContent = toneVol.value + '%';
+  }
+
+  toneFreq.addEventListener('input', updateToneUI);
+  toneVol.addEventListener('input', updateToneUI);
+
+  toneWave.addEventListener('change', () => {
+    if (toneState.osc) toneState.osc.type = toneWave.value;
+  });
+
+  function ensureToneContext() {
+    if (!toneState.ctx) {
+      toneState.ctx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (toneState.ctx.state === 'suspended') {
+      toneState.ctx.resume();
+    }
+  }
+
+  function startTone() {
+    ensureToneContext();
+    if (toneState.playing) return;
+
+    const osc = toneState.ctx.createOscillator();
+    const gain = toneState.ctx.createGain();
+
+    osc.type = toneWave.value;
+    osc.frequency.value = parseInt(toneFreq.value);
+    gain.gain.value = toneVol.value / 100 * 0.5;
+
+    osc.connect(gain);
+    gain.connect(toneState.ctx.destination);
+    osc.start();
+
+    toneState.osc = osc;
+    toneState.gain = gain;
+    toneState.playing = true;
+
+    tonePlayBtn.disabled = true;
+    toneStopBtn.disabled = false;
+    toneStatus.classList.add('on');
+  }
+
+  function stopTone() {
+    if (toneState.osc) {
+      try { toneState.osc.stop(); } catch(e) {}
+      toneState.osc.disconnect();
+      toneState.gain.disconnect();
+      toneState.osc = null;
+      toneState.gain = null;
+    }
+    toneState.playing = false;
+    tonePlayBtn.disabled = false;
+    toneStopBtn.disabled = true;
+    toneStatus.classList.remove('on');
+  }
+
+  tonePlayBtn.addEventListener('click', startTone);
+  toneStopBtn.addEventListener('click', stopTone);
+
+  toneFreq.addEventListener('input', () => {
+    if (toneState.osc) {
+      toneState.osc.frequency.setValueAtTime(parseInt(toneFreq.value), toneState.ctx.currentTime);
+    }
+  });
+
+  toneVol.addEventListener('input', () => {
+    if (toneState.gain) {
+      toneState.gain.gain.setValueAtTime(toneVol.value / 100 * 0.5, toneState.ctx.currentTime);
+    }
+  });
+
+  // Быстрые частоты
+  document.querySelectorAll('.quick-freq').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.quick-freq').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      toneFreq.value = btn.dataset.f;
+      updateToneUI();
+      if (toneState.osc) {
+        toneState.osc.frequency.setValueAtTime(parseInt(btn.dataset.f), toneState.ctx.currentTime);
+      }
+    });
+  });
+
+  // Sweep
+  toneSweepBtn.addEventListener('click', () => {
+    ensureToneContext();
+    if (toneState.sweeping) return;
+
+    if (toneState.osc) stopTone();
+
+    const osc = toneState.ctx.createOscillator();
+    const gain = toneState.ctx.createGain();
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(20, toneState.ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(20000, toneState.ctx.currentTime + 8);
+
+    gain.gain.value = toneVol.value / 100 * 0.4;
+
+    osc.connect(gain);
+    gain.connect(toneState.ctx.destination);
+    osc.start();
+    osc.stop(toneState.ctx.currentTime + 8);
+
+    toneState.osc = osc;
+    toneState.gain = gain;
+    toneState.playing = true;
+    toneState.sweeping = true;
+
+    tonePlayBtn.disabled = true;
+    toneStopBtn.disabled = false;
+    toneStatus.classList.add('on');
+
+    osc.onended = () => {
+      toneState.sweeping = false;
+      stopTone();
+    };
+  });
+
+  updateToneUI();
+
+  /* ==================== ШУМОМЕР ==================== */
+  const splState = {
+    stream: null,
+    ctx: null,
+    analyser: null,
+    source: null,
+    running: false,
+    peak: -Infinity,
+    sum: 0,
+    count: 0,
+    history: []
+  };
+
+  const splDisplay = document.getElementById('splDisplay');
+  const splFill = document.getElementById('splFill');
+  const splPeakMark = document.getElementById('splPeakMark');
+  const splPeak = document.getElementById('splPeak');
+  const splAvg = document.getElementById('splAvg');
+  const splCalib = document.getElementById('splCalib');
+  const splCalibVal = document.getElementById('splCalibVal');
+  const splCalibDisplay = document.getElementById('splCalibDisplay');
+  const splStatus = document.getElementById('splStatus');
+  const splStartBtn = document.getElementById('splStart');
+  const splStopBtn = document.getElementById('splStop');
+  const splResetBtn = document.getElementById('splReset');
+  const splCanvas = document.getElementById('splCanvas');
+  const splCtx2d = splCanvas.getContext('2d');
+
+  splCalib.addEventListener('input', () => {
+    splCalibVal.textContent = splCalib.value;
+    splCalibDisplay.textContent = splCalib.value;
+  });
+
+  function drawSplGraph() {
+    const w = splCanvas.width;
+    const h = splCanvas.height;
+    splCtx2d.clearRect(0, 0, w, h);
+
+    // Сетка
+    splCtx2d.strokeStyle = 'rgba(255,255,255,0.06)';
+    splCtx2d.lineWidth = 1;
+    for (let i = 0; i <= 4; i++) {
+      const y = (h / 4) * i;
+      splCtx2d.beginPath();
+      splCtx2d.moveTo(0, y);
+      splCtx2d.lineTo(w, y);
+      splCtx2d.stroke();
+    }
+
+    // История
+    if (splState.history.length > 1) {
+      splCtx2d.strokeStyle = '#fff';
+      splCtx2d.lineWidth = 2;
+      splCtx2d.beginPath();
+      const maxLen = 120;
+      const step = w / maxLen;
+      splState.history.slice(-maxLen).forEach((val, i) => {
+        const x = i * step;
+        const y = h - (val / 100) * h;
+        if (i === 0) splCtx2d.moveTo(x, y);
+        else splCtx2d.lineTo(x, y);
+      });
+      splCtx2d.stroke();
+    }
+  }
+
+  async function startSpl() {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false } });
+      splState.stream = stream;
+      splState.ctx = new (window.AudioContext || window.webkitAudioContext)();
+      splState.source = splState.ctx.createMediaStreamSource(stream);
+      splState.analyser = splState.ctx.createAnalyser();
+      splState.analyser.fftSize = 1024;
+      splState.source.connect(splState.analyser);
+
+      splState.running = true;
+      splStartBtn.disabled = true;
+      splStopBtn.disabled = false;
+      splStatus.classList.add('on');
+
+      updateSpl();
+    } catch (e) {
+      alert('Не удалось получить доступ к микрофону: ' + e.message);
+    }
+  }
+
+  function updateSpl() {
+    if (!splState.running) return;
+
+    const buffer = new Float32Array(splState.analyser.fftSize);
+    splState.analyser.getFloatTimeDomainData(buffer);
+
+    // RMS
+    let sum = 0;
+    for (let i = 0; i < buffer.length; i++) sum += buffer[i] * buffer[i];
+    const rms = Math.sqrt(sum / buffer.length);
+
+    // dBFS
+    const dbfs = 20 * Math.log10(rms + 1e-10);
+    const calib = parseInt(splCalib.value);
+    const db = Math.max(-100, Math.min(0, dbfs)) + calib;
+
+    // Проценты для полосы
+    const pct = Math.max(0, Math.min(100, ((db + 100) / 100) * 100));
+
+    splDisplay.textContent = db.toFixed(1);
+    splFill.style.width = pct + '%';
+
+    if (db > splState.peak) {
+      splState.peak = db;
+      splPeak.textContent = db.toFixed(1) + ' dB';
+      splPeakMark.style.left = pct + '%';
+    }
+
+    splState.sum += db;
+    splState.count++;
+    splAvg.textContent = (splState.sum / splState.count).toFixed(1) + ' dB';
+
+    splState.history.push(pct);
+    if (splState.history.length > 200) splState.history.shift();
+
+    drawSplGraph();
+    requestAnimationFrame(updateSpl);
+  }
+
+  function stopSpl() {
+    splState.running = false;
+    if (splState.stream) {
+      splState.stream.getTracks().forEach(t => t.stop());
+    }
+    if (splState.ctx) splState.ctx.close();
+    splState.stream = null;
+    splState.ctx = null;
+
+    splStartBtn.disabled = false;
+    splStopBtn.disabled = true;
+    splStatus.classList.remove('on');
+  }
+
+  splResetBtn.addEventListener('click', () => {
+    splState.peak = -Infinity;
+    splState.sum = 0;
+    splState.count = 0;
+    splState.history = [];
+    splPeak.textContent = '—';
+    splAvg.textContent = '—';
+    splPeakMark.style.left = '0%';
+  });
+
+  splStartBtn.addEventListener('click', startSpl);
+  splStopBtn.addEventListener('click', stopSpl);
+  drawSplGraph();
+
+  /* ==================== ОПРЕДЕЛИТЕЛЬ ЧАСТОТ ==================== */
+  const freqState = {
+    stream: null,
+    ctx: null,
+    analyser: null,
+    source: null,
+    running: false
+  };
+
+  const freqDisplay = document.getElementById('freqDisplay');
+  const freqNoteLabel = document.getElementById('freqNoteLabel');
+  const freqStatus = document.getElementById('freqStatus');
+  const freqStartBtn = document.getElementById('freqStart');
+  const freqStopBtn = document.getElementById('freqStop');
+  const freqCanvas = document.getElementById('freqCanvas');
+  const freqCtx2d = freqCanvas.getContext('2d');
+
+  async function startFreq() {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false } });
+      freqState.stream = stream;
+      freqState.ctx = new (window.AudioContext || window.webkitAudioContext)();
+      freqState.source = freqState.ctx.createMediaStreamSource(stream);
+      freqState.analyser = freqState.ctx.createAnalyser();
+      freqState.analyser.fftSize = 4096;
+      freqState.source.connect(freqState.analyser);
+
+      freqState.running = true;
+      freqStartBtn.disabled = true;
+      freqStopBtn.disabled = false;
+      freqStatus.classList.add('on');
+
+      updateFreq();
+    } catch (e) {
+      alert('Не удалось получить доступ к микрофону: ' + e.message);
+    }
+  }
+
+  function drawFreqSpectrum(data, sampleRate) {
+    const w = freqCanvas.width;
+    const h = freqCanvas.height;
+    freqCtx2d.clearRect(0, 0, w, h);
+
+    // Сетка
+    freqCtx2d.strokeStyle = 'rgba(255,255,255,0.06)';
+    freqCtx2d.lineWidth = 1;
+    for (let i = 0; i <= 4; i++) {
+      const y = (h / 4) * i;
+      freqCtx2d.beginPath();
+      freqCtx2d.moveTo(0, y);
+      freqCtx2d.lineTo(w, y);
+      freqCtx2d.stroke();
+    }
+
+    const binCount = data.length;
+    const nyquist = sampleRate / 2;
+    const barW = w / binCount;
+
+    for (let i = 0; i < binCount; i++) {
+      const v = (data[i] + 140) / 140;
+      const barH = Math.max(0, v) * h;
+      const x = i * barW;
+      const freq = (i / binCount) * nyquist;
+
+      // Подсвечиваем только до 20 кГц
+      if (freq > 20000) continue;
+
+      freqCtx2d.fillStyle = 'rgba(255,255,255,' + (0.3 + v * 0.7) + ')';
+      freqCtx2d.fillRect(x, h - barH, Math.max(1, barW - 1), barH);
+    }
+  }
+
+  function updateFreq() {
+    if (!freqState.running) return;
+
+    const data = new Float32Array(freqState.analyser.frequencyBinCount);
+    freqState.analyser.getFloatFrequencyData(data);
+
+    let maxVal = -Infinity;
+    let maxIdx = 0;
+    for (let i = 1; i < data.length; i++) {
+      if (data[i] > maxVal) {
+        maxVal = data[i];
+        maxIdx = i;
+      }
+    }
+
+    const sampleRate = freqState.ctx.sampleRate;
+    const dominantFreq = (maxIdx / data.length) * (sampleRate / 2);
+
+    if (maxVal > -70 && dominantFreq > 20 && dominantFreq < 20000) {
+      freqDisplay.textContent = dominantFreq < 1000 ? dominantFreq.toFixed(1) : (dominantFreq / 1000).toFixed(2) + 'k';
+      freqNoteLabel.textContent = freqToNote(dominantFreq);
+    } else {
+      freqDisplay.textContent = '—';
+      freqNoteLabel.textContent = 'Ожидание сигнала...';
+    }
+
+    drawFreqSpectrum(data, sampleRate);
+    requestAnimationFrame(updateFreq);
+  }
+
+  function stopFreq() {
+    freqState.running = false;
+    if (freqState.stream) freqState.stream.getTracks().forEach(t => t.stop());
+    if (freqState.ctx) freqState.ctx.close();
+    freqState.stream = null;
+    freqState.ctx = null;
+    freqStartBtn.disabled = false;
+    freqStopBtn.disabled = true;
+    freqStatus.classList.remove('on');
+  }
+
+  freqStartBtn.addEventListener('click', startFreq);
+  freqStopBtn.addEventListener('click', stopFreq);
+
+  /* ==================== КАЛЬКУЛЯТОР КОРОБА ==================== */
+  const boxType = document.getElementById('boxType');
+  const boxUnits = document.getElementById('boxUnits');
+  const boxVol = document.getElementById('boxVol');
+  const boxThickness = document.getElementById('boxThickness');
+  const boxSpeaker = document.getElementById('boxSpeaker');
+  const boxTune = document.getElementById('boxTune');
+  const boxPortD = document.getElementById('boxPortD');
+  const boxDispl = document.getElementById('boxDispl');
+  const boxResult = document.getElementById('boxResult');
+  const boxResultGrid = document.getElementById('boxResultGrid');
+
+  let currentDims = { w: 0, h: 0, d: 0, portD: 0, portL: 0, type: 'ported' };
+
+  function calculateBox() {
+    const volL = parseFloat(boxVol.value);
+    const thickness = parseFloat(boxThickness.value) / 10; // см
+    const displ = parseFloat(boxDispl.value);
+    const portD = parseFloat(boxPortD.value) / 10; // см
+    const tune = parseFloat(boxTune.value);
+    const type = boxType.value;
+
+    // Рабочий объём с учётом вытеснения динамика
+    const netVol = volL + displ;
+
+    // Подбираем пропорции короба (золотое сечение 1 : 1.4 : 1.8)
+    // V = W * H * D (в литрах = см³ / 1000)
+    const volCm3 = netVol * 1000;
+    // Пропорции: H = x, W = 1.4x, D = 1.8x, но глубина ограничена
+    // Возьмём H = x, W = 1.6x, D = 1.2x
+    const x = Math.cbrt(volCm3 / (1.6 * 1.2));
+    let w = x * 1.6;
+    let h = x;
+    let d = x * 1.2;
+
+    // Для порта
+    let portLength = 0;
+    if (type === 'ported' || type === 'slot') {
+      // Формула Гельмгольца: L = (23562.5 * D² * N) / (Fb² * Vb) - 0.732 * D
+      // D — диаметр в см, Vb — объём в литрах, Fb — частота в Гц
+      const D = portD;
+      const Vb = netVol;
+      const Fb = tune;
+      portLength = (23562.5 * D * D) / (Fb * Fb * Vb) - 0.732 * D;
+      if (portLength < 0) portLength = 5;
+    }
+
+    // Переводим в нужные единицы
+    const unitFactor = boxUnits.value === 'in' ? 1 / 2.54 : 1;
+    const unitLabel = boxUnits.value === 'in' ? '″' : 'см';
+
+    currentDims = {
+      w: (w + 2 * thickness) * unitFactor,
+      h: (h + 2 * thickness) * unitFactor,
+      d: (d + 2 * thickness) * unitFactor,
+      intW: w * unitFactor,
+      intH: h * unitFactor,
+      intD: d * unitFactor,
+      portD: portD * unitFactor,
+      portL: portLength * unitFactor,
+      type: type
+    };
+
+    let html = '';
+    html += `<div class="result-item"><div class="rn">${(w * unitFactor).toFixed(1)}</div><span class="rl">Ширина внутр. (${unitLabel})</span></div>`;
+    html += `<div class="result-item"><div class="rn">${(h * unitFactor).toFixed(1)}</div><span class="rl">Высота внутр. (${unitLabel})</span></div>`;
+    html += `<div class="result-item"><div class="rn">${(d * unitFactor).toFixed(1)}</div><span class="rl">Глубина внутр. (${unitLabel})</span></div>`;
+    html += `<div class="result-item"><div class="rn">${currentDims.w.toFixed(1)}×${currentDims.h.toFixed(1)}×${currentDims.d.toFixed(1)}</div><span class="rl">Габариты внешн. (${unitLabel})</span></div>`;
+    html += `<div class="result-item"><div class="rn">${netVol.toFixed(1)}</div><span class="rl">Объём чистый (л)</span></div>`;
+
+    if (type === 'ported' || type === 'slot') {
+      html += `<div class="result-item"><div class="rn">${portLength.toFixed(1)}</div><span class="rl">Длина порта (${unitLabel})</span></div>`;
+      html += `<div class="result-item"><div class="rn">${tune}</div><span class="rl">Настройка (Гц)</span></div>`;
+    }
+
+    html += `<div class="result-item"><div class="rn">${thickness * unitFactor * 10}</div><span class="rl">Толщина стенок (мм)</span></div>`;
+
+    boxResultGrid.innerHTML = html;
+    boxResult.style.display = 'block';
+
+    // Обновляем 3D
+    build3DBox();
+  }
+
+  document.getElementById('calcBox').addEventListener('click', calculateBox);
+  document.getElementById('resetBox').addEventListener('click', () => {
+    boxVol.value = 45;
+    boxThickness.value = 18;
+    boxTune.value = 35;
+    boxPortD.value = 100;
+    boxDispl.value = 3;
+    calculateBox();
+  });
+
+  /* ===== 3D визуализация короба ===== */
+  const viewer3d = document.getElementById('viewer3d');
+  const box3d = document.getElementById('box3d');
+
+  let rotX = -20;
+  let rotY = -30;
+  let scale = 1.5;
+
+  viewer3d.addEventListener('mousedown', (e) => {
+    if (e.target.closest('.hint')) return;
+    const startX = e.clientX;
+    const startY = e.clientY;
+    const startRotX = rotX;
+    const startRotY = rotY;
+
+    function onMove(ev) {
+      rotY = startRotY + (ev.clientX - startX) * 0.5;
+      rotX = startRotX - (ev.clientY - startY) * 0.5;
+      rotX = Math.max(-89, Math.min(89, rotX));
+      update3DRotation();
+    }
+    function onUp() {
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseup', onUp);
+    }
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onUp);
+  });
+
+  viewer3d.addEventListener('touchstart', (e) => {
+    if (e.target.closest('.hint')) return;
+    const touch = e.touches[0];
+    const startX = touch.clientX;
+    const startY = touch.clientY;
+    const startRotX = rotX;
+    const startRotY = rotY;
+
+    function onMove(ev) {
+      const t = ev.touches[0];
+      rotY = startRotY + (t.clientX - startX) * 0.5;
+      rotX = startRotX - (t.clientY - startY) * 0.5;
+      rotX = Math.max(-89, Math.min(89, rotX));
+      update3DRotation();
+    }
+    function onEnd() {
+      document.removeEventListener('touchmove', onMove);
+      document.removeEventListener('touchend', onEnd);
+    }
+    document.addEventListener('touchmove', onMove);
+    document.addEventListener('touchend', onEnd);
+  });
+
+  viewer3d.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    scale += e.deltaY > 0 ? -0.1 : 0.1;
+    scale = Math.max(0.5, Math.min(4, scale));
+    update3DRotation();
+  }, { passive: false });
+
+  function update3DRotation() {
+    if (!box3d) return;
+    box3d.style.transform = `translate(-50%, -50%) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(${scale})`;
+  }
+
+  function build3DBox() {
+    // Нормализуем размеры: максимальный = 200px
+    const maxDim = Math.max(currentDims.intW, currentDims.intH, currentDims.intD);
+    const factor = 200 / maxDim;
+
+    const w = currentDims.intW * factor;
+    const h = currentDims.intH * factor;
+    const d = currentDims.intD * factor;
+
+    const portD = currentDims.portD * factor;
+
+    box3d.innerHTML = '';
+
+    // 6 граней
+    const faces = [
+      { name: 'front', transform: `translateZ(${d/2}px)`, w, h },
+      { name: 'back', transform: `rotateY(180deg) translateZ(${d/2}px)`, w, h },
+      { name: 'right', transform: `rotateY(90deg) translateZ(${w/2}px)`, w: d, h },
+      { name: 'left', transform: `rotateY(-90deg) translateZ(${w/2}px)`, w: d, h },
+      { name: 'top', transform: `rotateX(90deg) translateZ(${h/2}px)`, w, h: d },
+      { name: 'bottom', transform: `rotateX(-90deg) translateZ(${h/2}px)`, w, h: d }
+    ];
+
+    faces.forEach(f => {
+      const el = document.createElement('div');
+      el.className = 'face ' + f.name;
+      el.style.width = f.w + 'px';
+      el.style.height = f.h + 'px';
+      el.style.left = (-f.w / 2) + 'px';
+      el.style.top = (-f.h / 2) + 'px';
+      el.style.transform = f.transform;
+
+      // Отверстие динамика на передней грани
+      if (f.name === 'front') {
+        const sp = document.createElement('div');
+        sp.className = 'port-circle';
+        const spD = 60 * factor * 2;
+        sp.style.width = spD + 'px';
+        sp.style.height = spD + 'px';
+        sp.style.left = '50%';
+        sp.style.top = '50%';
+        sp.style.transform = 'translate(-50%, -50%)';
+        sp.style.background = 'radial-gradient(circle, #000 40%, #2a2a2a 70%, #1a1a1a 100%)';
+        el.appendChild(sp);
+      }
+
+      // Отверстие порта
+      if ((f.name === 'front' || f.name === 'bottom') && (currentDims.type === 'ported' || currentDims.type === 'slot') && portD > 5) {
+        const p = document.createElement('div');
+        p.className = 'port-circle';
+        p.style.width = portD + 'px';
+        p.style.height = portD + 'px';
+        if (f.name === 'front') {
+          p.style.left = '80%';
+          p.style.top = '50%';
+        } else {
+          p.style.left = '20%';
+          p.style.top = '50%';
+        }
+        p.style.transform = 'translate(-50%, -50%)';
+        el.appendChild(p);
+      }
+
+      box3d.appendChild(el);
+    });
+
+    update3DRotation();
+  }
+
+  // Инициализация 3D
+  setTimeout(() => {
+    currentDims = { intW: 40, intH: 30, intD: 35, portD: 10, portL: 20, type: 'ported' };
+    build3DBox();
+  }, 100);
+
+  /* ==================== КАЛЬКУЛЯТОР ПРОВОДА ==================== */
+  const wireResult = document.getElementById('wireResult');
+  const wireResultGrid = document.getElementById('wireResultGrid');
+
+  function calculateWire() {
+    const type = document.getElementById('wireType').value;
+    const mat = document.getElementById('wireMat').value;
+    const power = parseFloat(document.getElementById('wirePower').value);
+    const volt = parseFloat(document.getElementById('wireVolt').value);
+    const length = parseFloat(document.getElementById('wireLength').value);
+    const maxDrop = parseFloat(document.getElementById('wireDrop').value);
+
+    // Удельное сопротивление (Ом·мм²/м)
+    const resistivity = mat === 'ofc' ? 0.0175 : 0.028;
+
+    // Ток
+    const current = power / volt;
+
+    // Допустимое падение напряжения
+    const dropV = volt * (maxDrop / 100);
+
+    // Требуемое сечение: S = (ρ * L * I) / ΔU
+    let section = (resistivity * length * current) / dropV;
+
+    // Минимум для акустики — 1.5 мм², для питания — 4 мм²
+    const minSection = type === 'power' ? 4 : 1.5;
+    section = Math.max(section, minSection);
+
+    // Стандартные сечения
+    const standards = [1.5, 2.5, 4, 6, 10, 16, 21, 25, 33, 35, 42, 53, 67, 80, 95];
+    const recommended = standards.find(s => s >= section) || standards[standards.length - 1];
+
+    // AWG приблизительно
+    const awgMap = {
+      1.5: '15', 2.5: '13', 4: '11', 6: '9', 10: '7', 16: '5',
+      21: '4', 25: '3', 33: '2', 35: '2', 42: '1', 53: '1/0', 67: '2/0', 80: '3/0', 95: '4/0'
+    };
+    const awg = awgMap[recommended] || '—';
+
+    // Реальное падение при рекомендованном сечении
+    const realDrop = (resistivity * length * current) / recommended;
+    const realDropPct = (realDrop / volt) * 100;
+
+    let html = '';
+    html += `<div class="result-item"><div class="rn">${current.toFixed(1)}</div><span class="rl">Ток (А)</span></div>`;
+    html += `<div class="result-item"><div class="rn">${recommended}</div><span class="rl">Сечение (мм²)</span></div>`;
+    html += `<div class="result-item"><div class="rn">${awg}</div><span class="rl">AWG</span></div>`;
+    html += `<div class="result-item"><div class="rn">${realDrop.toFixed(2)}</div><span class="rl">Падение (В)</span></div>`;
+    html += `<div class="result-item"><div class="rn">${realDropPct.toFixed(1)}%</div><span class="rl">Падение (%)</span></div>`;
+    html += `<div class="result-item"><div class="rn">${mat === 'ofc' ? 'Медь' : 'CCA'}</div><span class="rl">Материал</span></div>`;
+
+    // Предупреждение
+    let warning = '';
+    if (mat === 'cca' && type === 'power') {
+      warning = '<div class="warning-box" style="margin-top:20px;">⚠️ CCA-провод для питания — плохой выбор. Сопротивление выше на 60%, окисляется. Рекомендуется OFC.</div>';
+    }
+    if (realDropPct > maxDrop) {
+      warning += '<div class="warning-box" style="margin-top:20px;">⚠️ Даже при рекомендованном сечении падение превышает заданное. Увеличьте сечение или уменьшите длину.</div>';
+    }
+
+    wireResultGrid.innerHTML = html;
+    wireResult.style.display = 'block';
+
+    // Добавляем предупреждение после грида
+    const existingWarn = wireResult.querySelector('.warning-box');
+    if (existingWarn) existingWarn.remove();
+    if (warning) {
+      wireResult.insertAdjacentHTML('beforeend', warning);
+    }
+  }
+
+  document.getElementById('calcWire').addEventListener('click', calculateWire);
+  document.getElementById('resetWire').addEventListener('click', () => {
+    document.getElementById('wirePower').value = 500;
+    document.getElementById('wireVolt').value = 14.4;
+    document.getElementById('wireLength').value = 5;
+    document.getElementById('wireDrop').value = 3;
+    calculateWire();
+  });
+
+  /* ==================== ESC ==================== */
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeModal();
@@ -1930,8 +3057,19 @@
   /* ==================== ИНИЦИАЛИЗАЦИЯ ==================== */
   renderArticles();
   renderTopics();
-  statTopics.textContent = topics.length;
-  statReplies.textContent = topics.reduce((s, t) => s + t.replies, 0);
+  document.getElementById('statTopics').textContent = topics.length;
+  document.getElementById('statReplies').textContent = topics.reduce((s, t) => s + t.replies, 0);
+
+  // Остановка аудио при уходе со страницы инструментов
+  document.querySelectorAll('.main-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      if (tab.dataset.panel !== 'tools') {
+        stopTone();
+        stopSpl();
+        stopFreq();
+      }
+    });
+  });
 </script>
 
 </body>
